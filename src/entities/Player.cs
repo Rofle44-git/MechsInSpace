@@ -1,7 +1,7 @@
 using Godot;
 
 public partial class Player : CharacterBody2D {
-	//Test
+	//Test????
 	[Export]
 	PackedScene StarterBullet;
 	const int Speed = 300;
