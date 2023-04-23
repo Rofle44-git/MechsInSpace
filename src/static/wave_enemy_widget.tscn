@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3ysxylp4foar"]
+
+[ext_resource type="Script" path="res://src/static/wave_enemy_widget.gd" id="1_ma1bu"]
+
+[node name="WaveEnemyWidget" type="PanelContainer"]
+offset_right = 210.0
+offset_bottom = 34.0
+script = ExtResource("1_ma1bu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 18
+text = "Asshole"
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 18
+text = "X"

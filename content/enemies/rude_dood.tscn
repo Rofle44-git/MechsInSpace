@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv8kuh8sb6tul"]
+
+[ext_resource type="PackedScene" uid="uid://bvak0a27mmr13" path="res://src/entities/enemy.tscn" id="1_2osw1"]
+[ext_resource type="Texture2D" uid="uid://sjghsxhxpfag" path="res://assets/sprites/rude_dood.svg" id="2_r8tat"]
+
+[node name="RudeDood" instance=ExtResource("1_2osw1")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_r8tat")

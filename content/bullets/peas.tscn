@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0khe5h4yviw"]
+
+[ext_resource type="PackedScene" uid="uid://h23m5nlyn2bh" path="res://src/entities/projectile_bullet.tscn" id="1_fbi7e"]
+[ext_resource type="Texture2D" uid="uid://c6xqnwt7ewxa6" path="res://icon.svg" id="2_cijov"]
+[ext_resource type="PackedScene" uid="uid://bdpg0r1g5moj7" path="res://content/effects/shoot_smoke.tscn" id="2_ri3qw"]
+[ext_resource type="PackedScene" path="res://content/effects/hit_spark.tscn" id="3_s4ilj"]
+
+[node name="Peas" instance=ExtResource("1_fbi7e")]
+ShootEffect = ExtResource("2_ri3qw")
+HitEffect = ExtResource("3_s4ilj")
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_cijov")

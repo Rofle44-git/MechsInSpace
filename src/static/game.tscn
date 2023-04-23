@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3 uid="uid://7ypybxi6psb8"]
+
+[ext_resource type="PackedScene" uid="uid://dsndskaue8jlv" path="res://src/static/bg.tscn" id="1_py16m"]
+[ext_resource type="PackedScene" uid="uid://dvcjlm7ls0d0i" path="res://src/static/enemy_spawner.tscn" id="2_2wu10"]
+[ext_resource type="Script" path="res://src/static/WaveEnemyList.cs" id="3_kcfli"]
+[ext_resource type="PackedScene" uid="uid://cxcvambxx70kw" path="res://src/entities/player.tscn" id="4_83g6l"]
+
+[sub_resource type="Resource" id="Resource_t5yuk"]
+script = ExtResource("3_kcfli")
+List = []
+
+[node name="Main Scene" type="Node2D"]
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("1_py16m")]
+
+[node name="EnemySpawner" parent="." instance=ExtResource("2_2wu10")]
+Player = NodePath("../Player")
+Enemies = SubResource("Resource_t5yuk")
+
+[node name="Player" parent="." instance=ExtResource("4_83g6l")]

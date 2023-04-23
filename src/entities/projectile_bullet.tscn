@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://h23m5nlyn2bh"]
+
+[ext_resource type="PackedScene" uid="uid://lwurvoj0vyr3" path="res://src/entities/bullet.tscn" id="1_nnh7f"]
+[ext_resource type="Script" path="res://src/entities/ProjectileBullet.cs" id="2_qnbun"]
+
+[node name="ProjectileBullet" instance=ExtResource("1_nnh7f")]
+script = ExtResource("2_qnbun")
+Speed = 1750
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+[node name="Trail" type="GPUParticles2D" parent="." index="2"]

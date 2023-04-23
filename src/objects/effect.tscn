@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://o63eal80x0t1"]
+
+[ext_resource type="Script" path="res://src/objects/Effect.cs" id="1_wxigq"]
+
+[node name="Effect" type="Marker2D"]
+script = ExtResource("1_wxigq")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+one_shot = true

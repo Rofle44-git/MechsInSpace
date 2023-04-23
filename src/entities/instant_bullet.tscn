@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://brj32a6w16f4f"]
+
+[ext_resource type="PackedScene" uid="uid://lwurvoj0vyr3" path="res://src/entities/bullet.tscn" id="1_0lcfp"]
+[ext_resource type="Script" path="res://src/entities/instant_bullet.gd" id="2_ri0sb"]
+
+[node name="InstantBullet" instance=ExtResource("1_0lcfp")]
+script = ExtResource("2_ri0sb")
+max_distance = 0
+
+[node name="RayCast2D" type="RayCast2D" parent="." index="0"]
+
+[node name="Line2D" type="Line2D" parent="." index="1"]
+points = PackedVector2Array(0, 0, 128, -32)
+width = 6.0
