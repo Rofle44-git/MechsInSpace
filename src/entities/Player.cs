@@ -13,7 +13,6 @@ public partial class Player : CharacterBody2D {
 	bool AllowShooting = true;
 
 	public override void _Ready() {
-		GD.Print("PLEASE WORK 🤲");
 		HalfScreenSize = GetViewportRect().Size/2;
 		Camera = GetNode<Camera2D>("Camera2D");
 		BulletSpawn = GetNode<Marker2D>("BulletSpawn");
