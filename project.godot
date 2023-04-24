@@ -33,7 +33,6 @@ gdscript/warnings/unsafe_property_access=1
 
 window/size/viewport_width=800
 window/size/viewport_height=800
-window/vsync/vsync_mode=0
 
 [dotnet]
 
