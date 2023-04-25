@@ -4,8 +4,8 @@ public partial class Player : CharacterBody2D {
 	[Export]
 	PackedScene StarterBullet;
 	const int Speed = 300;
-	const int CameraOffset = 60;
 	Vector2 HalfScreenSize;
+	Vector2 CameraOffset;
 	Camera2D Camera;
 	Marker2D BulletSpawn;
 	PackedScene CurrentBullet;
@@ -38,9 +38,9 @@ public partial class Player : CharacterBody2D {
 	}
 
 	public override void _Process(double delta) {
-		Vector2 mousePos = (GetViewport().GetMousePosition()-HalfScreenSize).Normalized()*CameraOffset;
-		Rotation = Mathf.Atan2(mousePos.Y, mousePos.X);
-		Camera.Offset = Camera.Offset.Lerp(mousePos, 0.1f);
+		CameraOffset = (GetViewport().GetMousePosition()-HalfScreenSize).Normalized()*60;
+		Rotation = Mathf.Atan2(CameraOffset.Y, CameraOffset.X);
+		Camera.Offset = Camera.Offset.Lerp(CameraOffset, 0.12f);
 	}
 
 	public override void _PhysicsProcess(double delta) {
@@ -54,5 +54,3 @@ public partial class Player : CharacterBody2D {
 		ReloadTime = 1.0f/bulletInstance.ShotsPerSecond;
 	}
 }
-
-// TODO: make camera move further, relative to the distance from mouse to screen center
