@@ -53,10 +53,6 @@ public partial class Player : CharacterBody2D {
 		CurrentBullet = newBullet;
 		ReloadTime = 1.0f/bulletInstance.ShotsPerSecond;
 	}
-
-	void SpawnProcess() {
-		
-	}
 }
 
 // TODO: make camera move further, relative to the distance from mouse to screen center
