@@ -41,6 +41,13 @@ project/assembly_name="ShootEmUp"
 
 enabled=PackedStringArray()
 
+[importer_defaults]
+
+csv_translation={
+"compress": true,
+"delimiter": 2
+}
+
 [input]
 
 ui_left={
