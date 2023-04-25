@@ -58,3 +58,5 @@ public partial class Player : CharacterBody2D {
 		
 	}
 }
+
+// TODO: make camera move further, relative to the distance from mouse to screen center
