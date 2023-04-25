@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bdpg0r1g5moj7"]
 
 [ext_resource type="PackedScene" uid="uid://o63eal80x0t1" path="res://src/objects/effect.tscn" id="1_am1b8"]
-[ext_resource type="Texture2D" uid="uid://dspvox5ua610a" path="res://assets/sprites/smoke.svg" id="2_83em1"]
+[ext_resource type="Texture2D" uid="uid://dmllb42t3lg7v" path="res://assets/sprites/smoke.svg" id="2_83em1"]
 
 [sub_resource type="Gradient" id="Gradient_j7jfk"]
 colors = PackedColorArray(0.25, 0.25, 0.25, 0.666667, 0.25, 0.25, 0.25, 0)
