@@ -16,14 +16,13 @@ ResourceScriptDirectories=["res://src/static"]
 
 [application]
 
-config/name="2d-shoot-em-up"
+config/name="ShootEmUp"
+config/name_localized={
+"de_DE": "KNALL SIE AB"
+}
 run/main_scene="res://src/static/main_menu.tscn"
 config/features=PackedStringArray("4.0", "C#", "Forward Plus")
 config/icon="res://icon.svg"
-
-[autoload]
-
-Lib="*res://src/singletons/lib.gd"
 
 [debug]
 
@@ -36,7 +35,7 @@ window/size/viewport_height=800
 
 [dotnet]
 
-project/assembly_name="2d-shoot-em-up"
+project/assembly_name="ShootEmUp"
 
 [editor_plugins]
 
