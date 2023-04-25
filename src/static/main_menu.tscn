@@ -1,6 +1,74 @@
-[gd_scene load_steps=2 format=3 uid="uid://ct54dpgb2acv8"]
+[gd_scene load_steps=4 format=3 uid="uid://ct54dpgb2acv8"]
 
 [ext_resource type="Script" path="res://src/static/main_menu.gd" id="1_a4tj1"]
+[ext_resource type="Theme" uid="uid://dywyby257ioji" path="res://src/resources/main_menu.tres" id="1_v85qr"]
+[ext_resource type="Script" path="res://src/static/AnimatedButton.cs" id="3_sv01t"]
 
-[node name="MainMenu" type="Node2D"]
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_v85qr")
 script = ExtResource("1_a4tj1")
+override_debug_menu = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -108.0
+offset_right = 307.0
+offset_bottom = 108.0
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_constants/outline_size = 10
+text = "Shoot em up"
+
+[node name="Joke" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 16
+text = "…no really, do it"
+vertical_alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Start" type="Button" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Start"
+alignment = 2
+script = ExtResource("3_sv01t")
+
+[node name="Button" type="Button" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Settings"
+alignment = 2
+script = ExtResource("3_sv01t")
+
+[node name="About" type="Button" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "About"
+alignment = 2
+script = ExtResource("3_sv01t")
