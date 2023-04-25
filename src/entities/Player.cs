@@ -37,13 +37,13 @@ public partial class Player : CharacterBody2D {
 		}
 	}
 
-	public override void _PhysicsProcess(double delta) {
-		// Camera
+	public override void _Process(double delta) {
 		Vector2 mousePos = (GetViewport().GetMousePosition()-HalfScreenSize).Normalized()*CameraOffset;
 		Rotation = Mathf.Atan2(mousePos.Y, mousePos.X);
 		Camera.Offset = Camera.Offset.Lerp(mousePos, 0.1f);
+	}
 
-		// Movement
+	public override void _PhysicsProcess(double delta) {
 		Velocity = Velocity.Lerp(Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down") * Speed, 0.1f);
 		MoveAndSlide();
 	}
