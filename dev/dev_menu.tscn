@@ -34,16 +34,10 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "Game"
 
-[node name="WaveListEditor" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 18
-text = "WaveList Editor"
-
 [node name="Secret" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "?"
 
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Game" to="." method="_on_game_pressed"]
-[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/WaveListEditor" to="." method="_on_wave_list_editor_pressed"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Secret" to="." method="_on_secret_pressed"]
