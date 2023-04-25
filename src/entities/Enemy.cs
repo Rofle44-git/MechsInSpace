@@ -1,16 +1,16 @@
 using Godot;
 
 public partial class Enemy : CharacterBody2D {
-	CharacterBody2D Target;
+	Node2D Player;
 	const int Speed = 350;
 	Vector2 DeltaPos;
 
 	public override void _Ready() {
-		Target = GetParent().GetNode<CharacterBody2D>("Player");
+		Player = Global.Player;
 	}
 
 	public override void _PhysicsProcess(double delta) {
-		DeltaPos = Target.Position-Position;
+		DeltaPos = Player.Position-Position;
 		Rotation = Mathf.Atan2(DeltaPos.Y, DeltaPos.X);
 		Velocity = Speed * new Vector2(1.0f, 0.0f).Rotated(Rotation);
 		MoveAndSlide();
