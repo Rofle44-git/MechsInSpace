@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cv8kuh8sb6tul"]
+[gd_scene load_steps=4 format=3 uid="uid://da8jaielixcnm"]
 
 [ext_resource type="PackedScene" uid="uid://bvak0a27mmr13" path="res://src/entities/enemy.tscn" id="1_2osw1"]
-[ext_resource type="Texture2D" uid="uid://sjghsxhxpfag" path="res://assets/sprites/rude_dood.svg" id="2_r8tat"]
+[ext_resource type="Texture2D" uid="uid://sjghsxhxpfag" path="res://assets/sprites/rude_dude.svg" id="2_44o03"]
 
-[node name="RudeDood" instance=ExtResource("1_2osw1")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_1udqa"]
+radius = 22.0
+
+[node name="RudeDude" instance=ExtResource("1_2osw1")]
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_r8tat")
+texture = ExtResource("2_44o03")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_1udqa")
