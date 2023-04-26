@@ -1,6 +1,7 @@
 using Godot;
 
 public partial class Enemy : CharacterBody2D {
+	[Export] int Damage = 10;
 	Node2D Player;
 	const int Speed = 350;
 	Vector2 DeltaPos;
