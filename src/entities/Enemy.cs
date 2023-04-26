@@ -16,4 +16,8 @@ public partial class Enemy : CharacterBody2D {
 		Velocity = Speed * new Vector2(1.0f, 0.0f).Rotated(Rotation);
 		MoveAndSlide();
 	}
+
+	public void SelfDestruct() {
+		QueueFree();
+	}
 }
