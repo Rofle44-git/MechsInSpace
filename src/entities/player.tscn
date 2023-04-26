@@ -1,15 +1,44 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxcvambxx70kw"]
+[gd_scene load_steps=11 format=3 uid="uid://cxcvambxx70kw"]
 
 [ext_resource type="Script" path="res://src/entities/Player.cs" id="1_uq16e"]
 [ext_resource type="PackedScene" uid="uid://b0khe5h4yviw" path="res://content/bullets/peas.tscn" id="2_hdhtq"]
 [ext_resource type="Texture2D" uid="uid://dp8p4xuvhgftq" path="res://assets/sprites/player.svg" id="3_7eqfp"]
+[ext_resource type="Script" path="res://addons/shaker/shaker.gd" id="4_bxbgf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l8pfc"]
 radius = 21.0
 
+[sub_resource type="Curve" id="Curve_idnwh"]
+bake_resolution = 96
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l06jj"]
+bg_color = Color(0.1, 0.1, 0.1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bv62h"]
+bg_color = Color(0.9, 0.18, 0.18, 0.6)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gablg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tsppf"]
+bg_color = Color(0.901961, 0.180392, 0.180392, 0.6)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(1, 0)
-collision_mask = 10
+collision_mask = 26
+safe_margin = 1.0
 script = ExtResource("1_uq16e")
 StarterBullet = ExtResource("2_hdhtq")
 
@@ -24,3 +53,47 @@ position = Vector2(24, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_speed = 15.0
+
+[node name="Control" type="Control" parent="."]
+top_level = true
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -38.0
+offset_top = 30.0
+offset_right = 38.0
+offset_bottom = 45.0
+grow_horizontal = 2
+
+[node name="Shaker" type="Node" parent="Control" node_paths=PackedStringArray("target_node")]
+script = ExtResource("4_bxbgf")
+target_node = NodePath("..")
+target_property = &"position"
+min_value = 6.0
+max_value = 6.0
+fall_off = SubResource("Curve_idnwh")
+
+[node name="Bottom" type="ProgressBar" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_l06jj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bv62h")
+step = 1.0
+value = 60.0
+show_percentage = false
+
+[node name="Top" type="ProgressBar" parent="Control"]
+layout_mode = 2
+offset_right = 76.0
+offset_bottom = 15.0
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxEmpty_gablg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_tsppf")
+step = 1.0
+value = 90.0
+show_percentage = false
