@@ -50,8 +50,8 @@ public partial class Player : CharacterBody2D {
 		MoveAndSlide();
 
 		LatestCollision = GetLastSlideCollision();
-		LatestCollider = LatestCollision.GetCollider();
 		if (LatestCollision != null) {
+			LatestCollider = LatestCollision.GetCollider();
 			if (LatestCollider is Enemy) {
 				((Enemy)LatestCollider).SelfDestruct();
 			}
