@@ -39,7 +39,7 @@ project/assembly_name="ShootEmUp"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/shaker/plugin.cfg")
 
 [importer_defaults]
 
