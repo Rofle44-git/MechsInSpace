@@ -2,8 +2,7 @@ using Godot;
 using System;
 
 public partial class Player : CharacterBody2D {
-	[Export]
-	PackedScene StarterBullet;
+	[Export] PackedScene StarterBullet;
 	const int Speed = 300;
 	Vector2 HalfScreenSize;
 	Vector2 CameraOffset;
