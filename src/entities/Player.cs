@@ -1,4 +1,5 @@
 using Godot;
+using System;
 
 public partial class Player : CharacterBody2D {
 	[Export]
@@ -7,6 +8,8 @@ public partial class Player : CharacterBody2D {
 	Vector2 HalfScreenSize;
 	Vector2 CameraOffset;
 	Camera2D Camera;
+	KinematicCollision2D LatestCollision;
+	GodotObject LatestCollider;
 	Marker2D BulletSpawn;
 	PackedScene CurrentBullet;
 	float ReloadTime;
@@ -46,6 +49,14 @@ public partial class Player : CharacterBody2D {
 	public override void _PhysicsProcess(double delta) {
 		Velocity = Velocity.Lerp(Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down") * Speed, 0.1f);
 		MoveAndSlide();
+
+		LatestCollision = GetLastSlideCollision();
+		LatestCollider = LatestCollision.GetCollider();
+		if (LatestCollision != null) {
+			if (LatestCollider is Enemy) {
+				((Enemy)LatestCollider).SelfDestruct();
+			}
+		}
 	}
 
 	public void SetBullet(PackedScene newBullet) {
