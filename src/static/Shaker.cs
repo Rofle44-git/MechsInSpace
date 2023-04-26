@@ -83,12 +83,12 @@ public partial class Shaker : Node {
         }
     }
 
-    void Start(float timeSec = -1.0f) {
-        DurationTimer.Start(timeSec);
+    public void Start() {
+        DurationTimer.Start();
         SetProcess(true);
     }
 
-    void Stop() {
+    public void Stop() {
         DurationTimer.Stop();
         SetProcess(false);
     }

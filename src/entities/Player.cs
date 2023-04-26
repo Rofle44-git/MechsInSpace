@@ -2,8 +2,8 @@ using Godot;
 using System;
 
 public partial class Player : CharacterBody2D {
-	[Export] PackedScene StarterBullet;
 	const int Speed = 300;
+	int Health;
 	Vector2 HalfScreenSize;
 	Vector2 CameraOffset;
 	Camera2D Camera;
@@ -13,11 +13,23 @@ public partial class Player : CharacterBody2D {
 	PackedScene CurrentBullet;
 	float ReloadTime;
 	bool AllowShooting = true;
+	ProgressBar Health1;
+	ProgressBar Health2;
+	Shaker HealthShaker;
+	[Export] PackedScene StarterBullet;
+	[Export] int StartHealth;
+	[Export] int FramesPerHealthRegeneration;
 
 	public override void _Ready() {
-		HalfScreenSize = GetViewportRect().Size/2;
 		Camera = GetNode<Camera2D>("Camera2D");
 		BulletSpawn = GetNode<Marker2D>("BulletSpawn");
+		Health1 = GetNode<ProgressBar>("Control/Bottom");
+		Health2 = GetNode<ProgressBar>("Control/Top");
+		HealthShaker = GetNode<Shaker>("Control/Shaker");
+		Health = StartHealth;
+		Health1.Value = Health;
+		Health2.Value = Health;
+		HalfScreenSize = GetViewportRect().Size/2;
 		SetBullet(StarterBullet);
 	}
 
@@ -43,6 +55,8 @@ public partial class Player : CharacterBody2D {
 		CameraOffset = (GetViewport().GetMousePosition()-HalfScreenSize).Normalized()*60;
 		Rotation = Mathf.Atan2(CameraOffset.Y, CameraOffset.X);
 		Camera.Offset = Camera.Offset.Lerp(CameraOffset, 0.12f);
+
+		Health2.Value = Mathf.Lerp(Health2.Value, Health, 2.4f*delta);
 	}
 
 	public override void _PhysicsProcess(double delta) {
@@ -54,13 +68,24 @@ public partial class Player : CharacterBody2D {
 			LatestCollider = LatestCollision.GetCollider();
 			if (LatestCollider is Enemy) {
 				((Enemy)LatestCollider).SelfDestruct();
+				Damage(((Enemy)LatestCollider).Damage);
 			}
 		}
 	}
 
-	public void SetBullet(PackedScene newBullet) {
+	void SetBullet(PackedScene newBullet) {
 		Bullet bulletInstance = newBullet.Instantiate<Bullet>();
 		CurrentBullet = newBullet;
 		ReloadTime = 1.0f/bulletInstance.ShotsPerSecond;
+	}
+
+	void Damage(int amount) {
+		Health -= amount;
+		HealthShaker.Start();
+		Health1.Value = Health;
+	}
+
+	void Heal(int amount) {
+		Health += 1;
 	}
 }
