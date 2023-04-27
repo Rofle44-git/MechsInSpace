@@ -1,6 +1,7 @@
 using Godot;
 
 public partial class EnemySpawner : Node {
+    [Export] bool Enabled = true;
     [Export] Node2D Enemies;
     [Export] PackedScene TargetEnemy;
     [ExportSubgroup("Quantity")]
@@ -15,15 +16,17 @@ public partial class EnemySpawner : Node {
     Node2D Instance;
 
     public override void _PhysicsProcess(double delta) {
-        if (SpawnQueue > 0) {
-            SpawnQueue --;
-            Instance = TargetEnemy.Instantiate<Node2D>();
-            Instance.Position = new Vector2(1, 0).Rotated((float)GD.RandRange(0, Mathf.Tau))*(float)GD.RandRange(MinRange, MaxRange) + Global.Player.Position;
-            Enemies.AddChild(Instance);
-        }
-        else if (Enemies.GetChildCount() == 0) {
-            // TODO: Timer and effect for next wave transition
-            NextWave();
+        if (Enabled) {
+            if (SpawnQueue > 0) {
+                SpawnQueue --;
+                Instance = TargetEnemy.Instantiate<Node2D>();
+                Instance.Position = new Vector2(1, 0).Rotated((float)GD.RandRange(0, Mathf.Tau))*(float)GD.RandRange(MinRange, MaxRange) + Global.Player.Position;
+                Enemies.AddChild(Instance);
+            }
+            else if (Enemies.GetChildCount() == 0) {
+                // TODO: Timer and effect for next wave transition
+                NextWave();
+            }
         }
     }
 
