@@ -13,6 +13,7 @@ Player = NodePath("Player")
 [node name="ParallaxBackground" parent="." instance=ExtResource("1_py16m")]
 
 [node name="EnemySpawner" parent="." node_paths=PackedStringArray("Enemies") instance=ExtResource("2_2wu10")]
+Enabled = false
 Enemies = NodePath("../Enemies")
 TargetEnemy = ExtResource("4_ei7yb")
 
