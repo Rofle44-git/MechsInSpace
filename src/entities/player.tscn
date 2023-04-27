@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cxcvambxx70kw"]
+[gd_scene load_steps=12 format=3 uid="uid://cxcvambxx70kw"]
 
 [ext_resource type="Script" path="res://src/entities/Player.cs" id="1_uq16e"]
 [ext_resource type="PackedScene" uid="uid://b0khe5h4yviw" path="res://content/bullets/peas.tscn" id="2_hdhtq"]
 [ext_resource type="Texture2D" uid="uid://dp8p4xuvhgftq" path="res://assets/sprites/player.svg" id="3_7eqfp"]
+[ext_resource type="Script" path="res://src/entities/FloatingHUD.cs" id="4_ellcy"]
 [ext_resource type="PackedScene" uid="uid://cu0o7hem11aqe" path="res://src/static/shaker.tscn" id="4_imic2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l8pfc"]
@@ -56,7 +57,7 @@ position = Vector2(24, 0)
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_speed = 15.0
 
-[node name="Control" type="Control" parent="."]
+[node name="FloatingHUD" type="Control" parent="."]
 top_level = true
 layout_mode = 3
 anchors_preset = 5
@@ -67,8 +68,9 @@ offset_top = 30.0
 offset_right = -362.0
 offset_bottom = 45.0
 grow_horizontal = 2
+script = ExtResource("4_ellcy")
 
-[node name="Shaker" parent="Control" node_paths=PackedStringArray("TargetNode") instance=ExtResource("4_imic2")]
+[node name="Shaker" parent="FloatingHUD" node_paths=PackedStringArray("TargetNode") instance=ExtResource("4_imic2")]
 TargetNode = NodePath("..")
 TargetProperty = &"position"
 PropertyType = &"vector2"
@@ -76,7 +78,7 @@ MinValue = 6.0
 MaxValue = 6.0
 FallOff = SubResource("Curve_5k1kj")
 
-[node name="Bottom" type="ProgressBar" parent="Control"]
+[node name="Bottom" type="ProgressBar" parent="FloatingHUD"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -88,7 +90,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_bv62h")
 value = 100.0
 show_percentage = false
 
-[node name="Top" type="ProgressBar" parent="Control"]
+[node name="Top" type="ProgressBar" parent="FloatingHUD"]
 layout_mode = 2
 offset_right = 76.0
 offset_bottom = 15.0

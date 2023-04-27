@@ -23,9 +23,9 @@ public partial class Player : CharacterBody2D {
 	public override void _Ready() {
 		Camera = GetNode<Camera2D>("Camera2D");
 		BulletSpawn = GetNode<Marker2D>("BulletSpawn");
-		Health1 = GetNode<ProgressBar>("Control/Bottom");
-		Health2 = GetNode<ProgressBar>("Control/Top");
-		HealthShaker = GetNode<Shaker>("Control/Shaker");
+		Health1 = GetNode<ProgressBar>("FloatingHUD/Bottom");
+		Health2 = GetNode<ProgressBar>("FloatingHUD/Top");
+		HealthShaker = GetNode<Shaker>("FloatingHUD/Shaker");
 		Health = StartHealth;
 		Health1.Value = Health;
 		Health2.Value = Health;
@@ -54,13 +54,13 @@ public partial class Player : CharacterBody2D {
 	public override void _Process(double delta) {
 		CameraOffset = (GetViewport().GetMousePosition()-HalfScreenSize).Normalized()*60;
 		Rotation = Mathf.Atan2(CameraOffset.Y, CameraOffset.X);
-		Camera.Offset = Camera.Offset.Lerp(CameraOffset, 0.12f);
+		Camera.Offset = Camera.Offset.Lerp(CameraOffset, (float)(7.2f*delta));
 
 		Health2.Value = Mathf.Lerp(Health2.Value, Health, 2.4f*delta);
 	}
 
 	public override void _PhysicsProcess(double delta) {
-		Velocity = Velocity.Lerp(Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down") * Speed, 0.1f);
+		Velocity = Velocity.Lerp(Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down") * Speed, (float)(6.0f*delta));
 		MoveAndSlide();
 
 		LatestCollision = GetLastSlideCollision();
