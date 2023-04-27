@@ -15,7 +15,7 @@ public partial class HomingBullet : Bullet {
     
     public override void _PhysicsProcess(double delta) {
         DeltaPos = Target.Position-Position;
-        Rotation = Mathf.LerpAngle(Rotation, Mathf.Atan2(DeltaPos.Y, DeltaPos.X), 0.1f);
+        Rotation = Mathf.LerpAngle(Rotation, Mathf.Atan2(DeltaPos.Y, DeltaPos.X), (float)(6.0f*delta));
         Velocity = Speed* new Vector2(1.0f, 0.0f).Rotated(Rotation);
         MoveAndSlide();
     }
