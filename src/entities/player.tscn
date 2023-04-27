@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cxcvambxx70kw"]
+[gd_scene load_steps=13 format=3 uid="uid://cxcvambxx70kw"]
 
 [ext_resource type="Script" path="res://src/entities/Player.cs" id="1_uq16e"]
 [ext_resource type="PackedScene" uid="uid://b0khe5h4yviw" path="res://content/bullets/peas.tscn" id="2_hdhtq"]
@@ -6,12 +6,17 @@
 [ext_resource type="Script" path="res://src/entities/FloatingHUD.cs" id="4_ellcy"]
 [ext_resource type="PackedScene" uid="uid://cu0o7hem11aqe" path="res://src/static/shaker.tscn" id="4_imic2"]
 
+[sub_resource type="Curve" id="Curve_ppqs3"]
+bake_resolution = 96
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.27851, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_l8pfc"]
 radius = 21.0
 
 [sub_resource type="Curve" id="Curve_5k1kj"]
 bake_resolution = 192
-_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, -0.0150484, 0, 0, Vector2(1, 0), -2.97959, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l06jj"]
@@ -22,7 +27,7 @@ corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bv62h"]
-bg_color = Color(0.9, 0.18, 0.18, 0.6)
+bg_color = Color(0.9, 0.66, 0.18, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
@@ -31,7 +36,7 @@ corner_radius_bottom_left = 12
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gablg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tsppf"]
-bg_color = Color(0.901961, 0.180392, 0.180392, 0.6)
+bg_color = Color(0.901961, 0.180392, 0.180392, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
@@ -48,6 +53,15 @@ FramesPerHealthRegeneration = 120
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_7eqfp")
 
+[node name="Shaker" parent="Sprite2D" node_paths=PackedStringArray("TargetNode") instance=ExtResource("4_imic2")]
+TargetNode = NodePath("..")
+TargetProperty = &"position"
+PropertyType = &"vector2"
+MinValue = -10.0
+MaxValue = 10.0
+Duration = 0.4
+FallOff = SubResource("Curve_ppqs3")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_l8pfc")
 
@@ -60,25 +74,31 @@ position_smoothing_speed = 15.0
 [node name="FloatingHUD" type="Control" parent="."]
 top_level = true
 layout_mode = 3
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -438.0
+anchors_preset = 0
+offset_left = -38.0
 offset_top = 30.0
-offset_right = -362.0
+offset_right = 38.0
 offset_bottom = 45.0
-grow_horizontal = 2
 script = ExtResource("4_ellcy")
 
-[node name="Shaker" parent="FloatingHUD" node_paths=PackedStringArray("TargetNode") instance=ExtResource("4_imic2")]
+[node name="ShakeContainer" type="Control" parent="FloatingHUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Shaker" parent="FloatingHUD/ShakeContainer" node_paths=PackedStringArray("TargetNode") instance=ExtResource("4_imic2")]
 TargetNode = NodePath("..")
 TargetProperty = &"position"
 PropertyType = &"vector2"
-MinValue = 6.0
-MaxValue = 6.0
+MinValue = -20.0
+MaxValue = 20.0
+Duration = 0.5
 FallOff = SubResource("Curve_5k1kj")
 
-[node name="Bottom" type="ProgressBar" parent="FloatingHUD"]
+[node name="Bottom" type="ProgressBar" parent="FloatingHUD/ShakeContainer"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -90,7 +110,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_bv62h")
 value = 100.0
 show_percentage = false
 
-[node name="Top" type="ProgressBar" parent="FloatingHUD"]
+[node name="Top" type="ProgressBar" parent="FloatingHUD/ShakeContainer"]
 layout_mode = 2
 offset_right = 76.0
 offset_bottom = 15.0

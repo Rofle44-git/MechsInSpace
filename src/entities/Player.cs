@@ -16,6 +16,7 @@ public partial class Player : CharacterBody2D {
 	ProgressBar Health1;
 	ProgressBar Health2;
 	Shaker HealthShaker;
+	Shaker SpriteShaker;
 	[Export] PackedScene StarterBullet;
 	[Export] int StartHealth;
 	[Export] int FramesPerHealthRegeneration;
@@ -23,9 +24,10 @@ public partial class Player : CharacterBody2D {
 	public override void _Ready() {
 		Camera = GetNode<Camera2D>("Camera2D");
 		BulletSpawn = GetNode<Marker2D>("BulletSpawn");
-		Health1 = GetNode<ProgressBar>("FloatingHUD/Bottom");
-		Health2 = GetNode<ProgressBar>("FloatingHUD/Top");
-		HealthShaker = GetNode<Shaker>("FloatingHUD/Shaker");
+		Health1 = GetNode<ProgressBar>("FloatingHUD/ShakeContainer/Top");
+		Health2 = GetNode<ProgressBar>("FloatingHUD/ShakeContainer/Bottom");
+		HealthShaker = GetNode<Shaker>("FloatingHUD/ShakeContainer/Shaker");
+		SpriteShaker = GetNode<Shaker>("Sprite2D/Shaker");
 		Health = StartHealth;
 		Health1.Value = Health;
 		Health2.Value = Health;
@@ -56,7 +58,7 @@ public partial class Player : CharacterBody2D {
 		Rotation = Mathf.Atan2(CameraOffset.Y, CameraOffset.X);
 		Camera.Offset = Camera.Offset.Lerp(CameraOffset, (float)(7.2f*delta));
 
-		Health2.Value = Mathf.Lerp(Health2.Value, Health, 2.4f*delta);
+		Health2.Value = Mathf.Lerp(Health2.Value, Health, 6.0f*delta);
 	}
 
 	public override void _PhysicsProcess(double delta) {
@@ -82,6 +84,7 @@ public partial class Player : CharacterBody2D {
 	void Damage(int amount) {
 		Health -= amount;
 		HealthShaker.Start();
+		SpriteShaker.Start();
 		Health1.Value = Health;
 	}
 
