@@ -7,8 +7,8 @@
 script = ExtResource("2_qnbun")
 Speed = 1750
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+[node name="Trail" type="GPUParticles2D" parent="." index="0"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
 
-[node name="Trail" type="GPUParticles2D" parent="." index="2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
