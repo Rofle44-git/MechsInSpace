@@ -21,7 +21,7 @@ config/name_localized={
 "de_DE": "KNALL SIE AB"
 }
 run/main_scene="res://src/static/main_menu.tscn"
-config/features=PackedStringArray("4.0", "C#", "Forward Plus")
+config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
 [debug]
@@ -39,7 +39,7 @@ project/assembly_name="ShootEmUp"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/shaker/plugin.cfg")
+enabled=PackedStringArray()
 
 [importer_defaults]
 
