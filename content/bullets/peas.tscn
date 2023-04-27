@@ -1,23 +1,34 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0khe5h4yviw"]
+[gd_scene load_steps=8 format=3 uid="uid://b0khe5h4yviw"]
 
 [ext_resource type="PackedScene" uid="uid://h23m5nlyn2bh" path="res://src/entities/projectile_bullet.tscn" id="1_fbi7e"]
-[ext_resource type="Texture2D" uid="uid://c6xqnwt7ewxa6" path="res://icon.svg" id="2_cijov"]
 [ext_resource type="PackedScene" uid="uid://bdpg0r1g5moj7" path="res://content/effects/shoot_smoke.tscn" id="2_ri3qw"]
 [ext_resource type="PackedScene" path="res://content/effects/hit_spark.tscn" id="3_s4ilj"]
+[ext_resource type="Texture2D" uid="uid://c4gcnv1bnd5tm" path="res://assets/sprites/pea.svg" id="4_r0ldl"]
 
 [sub_resource type="Curve" id="Curve_4wdlo"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
 point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_omu80"]
+colors = PackedColorArray(0.78, 0.66612, 0.2106, 0, 1, 0.866667, 0.333333, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f6bb2"]
+radius = 14.1421
 
 [node name="Peas" instance=ExtResource("1_fbi7e")]
 ShootEffect = ExtResource("2_ri3qw")
 HitEffect = ExtResource("3_s4ilj")
 
 [node name="Trail2D" parent="." index="0" node_paths=PackedStringArray("Target")]
+width = 18.0
 width_curve = SubResource("Curve_4wdlo")
+gradient = SubResource("Gradient_omu80")
 Target = NodePath("..")
+Lifetime = 0.4
 Enabled = true
 
 [node name="Sprite2D" parent="." index="2"]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_cijov")
+texture = ExtResource("4_r0ldl")
+
+[node name="CollisionShape2D" parent="." index="3"]
+shape = SubResource("CircleShape2D_f6bb2")
