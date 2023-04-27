@@ -7,8 +7,8 @@ public partial class Player : CharacterBody2D {
 	Vector2 HalfScreenSize;
 	Vector2 CameraOffset;
 	Camera2D Camera;
-	KinematicCollision2D LatestCollision;
-	GodotObject LatestCollider;
+	KinematicCollision2D Collision;
+	GodotObject Collider;
 	Marker2D BulletSpawn;
 	PackedScene CurrentBullet;
 	float ReloadTime;
@@ -64,13 +64,15 @@ public partial class Player : CharacterBody2D {
 	public override void _PhysicsProcess(double delta) {
 		Velocity = Velocity.Lerp(Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down") * Speed, (float)(6.0f*delta));
 		MoveAndSlide();
-
-		LatestCollision = GetLastSlideCollision();
-		if (LatestCollision != null) {
-			LatestCollider = LatestCollision.GetCollider();
-			if (LatestCollider is Enemy) {
-				((Enemy)LatestCollider).SelfDestruct();
-				Damage(((Enemy)LatestCollider).Damage);
+	
+		for (int i = 0; i < GetSlideCollisionCount(); i++) {
+			Collision = GetSlideCollision(i);
+			if (Collision != null) {
+				Collider = Collision.GetCollider();
+				if (Collider is Enemy) {
+					((Enemy)Collider).SelfDestruct();
+					Damage(((Enemy)Collider).Damage);
+				}
 			}
 		}
 	}
