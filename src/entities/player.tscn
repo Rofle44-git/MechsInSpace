@@ -44,7 +44,8 @@ corner_radius_bottom_left = 12
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 26
-safe_margin = 1.0
+platform_on_leave = 2
+safe_margin = 0.5
 script = ExtResource("1_uq16e")
 StarterBullet = ExtResource("2_hdhtq")
 StartHealth = 100
