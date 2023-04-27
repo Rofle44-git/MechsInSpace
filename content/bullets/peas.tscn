@@ -9,6 +9,6 @@
 ShootEffect = ExtResource("2_ri3qw")
 HitEffect = ExtResource("3_s4ilj")
 
-[node name="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" parent="." index="2"]
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_cijov")
