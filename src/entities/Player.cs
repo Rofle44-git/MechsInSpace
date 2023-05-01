@@ -18,19 +18,18 @@ public partial class Player : CharacterBody2D {
 	Shaker HealthShaker;
 	Shaker SpriteShaker;
 	[Export] PackedScene StarterBullet;
-	[Export] int StartHealth;
-	[Export] int FramesPerHealthRegeneration;
+	[Export] int MaxHealth;
+	[Export] ulong FramesPerHealthRegeneration;
 
 	public override void _Ready() {
-		Camera = GetNode<Camera2D>("Camera2D");
-		BulletSpawn = GetNode<Marker2D>("BulletSpawn");
+		Health = MaxHealth;
 		Health1 = GetNode<ProgressBar>("FloatingHUD/ShakeContainer/Top");
 		Health2 = GetNode<ProgressBar>("FloatingHUD/ShakeContainer/Bottom");
 		HealthShaker = GetNode<Shaker>("FloatingHUD/ShakeContainer/Shaker");
 		SpriteShaker = GetNode<Shaker>("Sprite2D/Shaker");
-		Health = StartHealth;
-		Health1.Value = Health;
-		Health2.Value = Health;
+		Health = MaxHealth;
+		Health1.Value = Health2.Value = Health;
+		Health1.MaxValue = Health2.MaxValue = MaxHealth;
 		HalfScreenSize = GetViewportRect().Size/2;
 		SetBullet(StarterBullet);
 	}
@@ -61,9 +60,11 @@ public partial class Player : CharacterBody2D {
 		Health2.Value = Mathf.Lerp(Health2.Value, Health, 6.0f*delta);
 	}
 
-	public override void _PhysicsProcess(double delta) {
+	public override void _PhysicsProcess(double delta) {	
 		Velocity = Velocity.Lerp(Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down") * Speed, (float)(6.0f*delta));
 		MoveAndSlide();
+
+		if (Engine.GetPhysicsFrames() % FramesPerHealthRegeneration == 0) Heal(1);
 	
 		for (int i = 0; i < GetSlideCollisionCount(); i++) {
 			Collision = GetSlideCollision(i);
@@ -84,6 +85,7 @@ public partial class Player : CharacterBody2D {
 	}
 
 	void Damage(int amount) {
+		if (Health+amount <= 0) Die();
 		Health -= amount;
 		HealthShaker.Start();
 		SpriteShaker.Start();
@@ -91,6 +93,13 @@ public partial class Player : CharacterBody2D {
 	}
 
 	void Heal(int amount) {
-		Health += 1;
+		if (Health+amount > MaxHealth) return;
+		Health += amount;
+		Health1.Value = Health;
+	}
+	
+	void Die() {
+		QueueFree();
+		// TODO: Add neat effects
 	}
 }
