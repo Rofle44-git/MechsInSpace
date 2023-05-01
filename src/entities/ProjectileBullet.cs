@@ -5,6 +5,7 @@ public partial class ProjectileBullet : Bullet {
     Vector2 RotationVector;
 
     public override void _Ready() {
+        base._Ready();
         RotationVector = new Vector2(1.0f, 0.0f).Rotated(Rotation);
     }
     

@@ -6,6 +6,7 @@ public partial class HomingBullet : Bullet {
     Vector2 DeltaPos;
 
     public override void _Ready() {
+        base._Ready();
         Godot.Collections.Array<Node> Enemies = GetTree().GetNodesInGroup("Enemies");
         Target = (Node2D)Enemies[0];
         foreach (Node2D _Node in Enemies) {

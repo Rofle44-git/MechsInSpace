@@ -2,6 +2,7 @@ using Godot;
 
 public partial class InstantBullet : Bullet {
     public override void _Ready() {
+        base._Ready();
         RayCast2D Ray = GetNode<RayCast2D>("RayCast2D");
         Line2D Line = GetNode<Line2D>("Line2D");
 
