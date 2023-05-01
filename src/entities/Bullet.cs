@@ -9,12 +9,14 @@ public partial class Bullet : CharacterBody2D {
     [Export] PackedScene ShootEffect;
     [Export] PackedScene HitEffect;
     public Vector2 HitPos;
+    private bool Expired;
+
+    public override void _Ready() {
+        GetNode<LifetimeComponent>("LifetimeComponent").Connect("Expire", Callable.From(OnExpired));
+    }
 
     public override void _EnterTree() {
-        if (ShootEffect == null) {
-            GD.PushError("No packed scene assigned.");
-            return;
-        }
+        if (ShootEffect == null) return;
         Node2D Effect = ShootEffect.Instantiate<Node2D>();
         Effect.GlobalPosition = GlobalPosition;
         Effect.GlobalRotation = GlobalRotation;
@@ -22,12 +24,14 @@ public partial class Bullet : CharacterBody2D {
     }
 
     public override void _ExitTree() {
-        if (HitEffect == null) {
-            GD.PushError("No packed scene assigned.");
-            return;
-        }
+        if (HitEffect == null || Expired) return;
         Node2D Effect = HitEffect.Instantiate<Node2D>();
         Effect.GlobalPosition = HitPos;
         AddSibling(Effect);
+    }
+
+    private void OnExpired() {
+        Expired = true;
+        QueueFree();
     }
 }
