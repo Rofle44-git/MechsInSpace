@@ -25,12 +25,13 @@ public partial class Player : CharacterBody2D {
 		Health = MaxHealth;
 		Health1 = GetNode<ProgressBar>("FloatingHUD/ShakeContainer/Top");
 		Health2 = GetNode<ProgressBar>("FloatingHUD/ShakeContainer/Bottom");
-		HealthShaker = GetNode<Shaker>("FloatingHUD/ShakeContainer/Shaker");
-		SpriteShaker = GetNode<Shaker>("Sprite2D/Shaker");
-		Health = MaxHealth;
 		Health1.Value = Health2.Value = Health;
 		Health1.MaxValue = Health2.MaxValue = MaxHealth;
+		HealthShaker = GetNode<Shaker>("FloatingHUD/ShakeContainer/Shaker");
+		SpriteShaker = GetNode<Shaker>("Sprite2D/Shaker");
+		Camera = GetNode<Camera2D>("Camera2D");
 		HalfScreenSize = GetViewportRect().Size/2;
+		BulletSpawn = GetNode<Marker2D>("BulletSpawn");
 		SetBullet(StarterBullet);
 	}
 
