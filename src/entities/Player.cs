@@ -35,16 +35,12 @@ public partial class Player : CharacterBody2D {
 		SetBullet(StarterBullet);
 	}
 
-	public override async void _UnhandledInput(InputEvent @event) {
-		switch (@event) {
-		case InputEventMouseButton:
-			switch (((InputEventMouseButton)@event).ButtonIndex) {
-			case MouseButton.Left:
-				if (!AllowShooting) break;
-				Bullet BulletInstance = CurrentBullet.Instantiate<Bullet>();
-				BulletInstance.GlobalPosition = BulletSpawn.GlobalPosition;
-				BulletInstance.GlobalRotation = BulletSpawn.GlobalRotation;
-				AddSibling(BulletInstance);
+	public override void _UnhandledInput(InputEvent @event) {
+		if (!Input.IsActionJustPressed("shoot")) return;
+		Bullet BulletInstance = CurrentBullet.Instantiate<Bullet>();
+		BulletInstance.GlobalPosition = BulletSpawn.GlobalPosition;
+		BulletInstance.GlobalRotation = BulletSpawn.GlobalRotation;
+		AddSibling(BulletInstance);
 				AllowShooting = false;
 				await ToSignal(GetTree().CreateTimer(ReloadTime), "timeout");
 				AllowShooting = true;
