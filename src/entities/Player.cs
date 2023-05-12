@@ -41,12 +41,6 @@ public partial class Player : CharacterBody2D {
 		BulletInstance.GlobalPosition = BulletSpawn.GlobalPosition;
 		BulletInstance.GlobalRotation = BulletSpawn.GlobalRotation;
 		AddSibling(BulletInstance);
-				AllowShooting = false;
-				await ToSignal(GetTree().CreateTimer(ReloadTime), "timeout");
-				AllowShooting = true;
-				break;
-			} break;
-		}
 	}
 
 	public override void _Process(double delta) {
