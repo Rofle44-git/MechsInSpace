@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ct54dpgb2acv8"]
+[gd_scene load_steps=6 format=3 uid="uid://ct54dpgb2acv8"]
 
 [ext_resource type="Script" path="res://src/static/main_menu.gd" id="1_a4tj1"]
 [ext_resource type="Theme" uid="uid://dywyby257ioji" path="res://src/resources/main_menu.tres" id="1_v85qr"]
 [ext_resource type="Script" path="res://src/static/joke_label.gd" id="3_3h7cf"]
 [ext_resource type="Script" path="res://src/static/AnimatedButton.cs" id="3_sv01t"]
+[ext_resource type="PackedScene" uid="uid://dsndskaue8jlv" path="res://src/static/bg.tscn" id="5_4inei"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -38,15 +39,19 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0.9, 0.9, 0.9, 1)
-theme_override_constants/outline_size = 10
+theme_override_colors/font_outline_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_constants/outline_size = 24
 text = "Shoot em up"
 
 [node name="JokeLabel" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
+theme_override_colors/font_shadow_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 4
 theme_override_font_sizes/font_size = 16
-text = "…no really, do it"
+text = "...it's what they would have wanted"
 vertical_alignment = 2
 script = ExtResource("3_3h7cf")
 
@@ -74,6 +79,8 @@ size_flags_horizontal = 0
 text = "About"
 alignment = 2
 script = ExtResource("3_sv01t")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("5_4inei")]
 
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
