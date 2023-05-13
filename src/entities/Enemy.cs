@@ -3,7 +3,7 @@ using Godot;
 public partial class Enemy : CharacterBody2D {
 	[Export] public int Damage = 10;
 	Node2D Player;
-	const int Speed = 350;
+	const int Speed = 250;
 	Vector2 DeltaPos;
 
 	public override void _Ready() {
