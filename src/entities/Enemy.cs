@@ -11,6 +11,7 @@ public partial class Enemy : CharacterBody2D {
 	}
 
 	public override void _PhysicsProcess(double delta) {
+		if (!IsInstanceValid(Player)) return;
 		DeltaPos = Player.Position-Position;
 		Rotation = Mathf.Atan2(DeltaPos.Y, DeltaPos.X);
 		Velocity = Speed * new Vector2(1.0f, 0.0f).Rotated(Rotation);

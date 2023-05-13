@@ -16,7 +16,7 @@ public partial class EnemySpawner : Node {
     Node2D Instance;
 
     public override void _PhysicsProcess(double delta) {
-        if (Enabled) {
+        if (Enabled && IsInstanceValid(Global.Player)) {
             if (SpawnQueue > 0) {
                 SpawnQueue --;
                 Instance = TargetEnemy.Instantiate<Node2D>();
