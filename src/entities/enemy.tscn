@@ -7,7 +7,6 @@ collision_layer = 2
 collision_mask = 25
 motion_mode = 1
 platform_on_leave = 2
-safe_margin = 0.5
 script = ExtResource("1_iglhu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
