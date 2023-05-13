@@ -89,7 +89,6 @@ public partial class Player : CharacterBody2D {
 	}
 	
 	void Die() {
-		QueueFree();
-		// TODO: Add neat effects
+		GetNode<AnimationPlayer>("Anim").Play("die");
 	}
 }
