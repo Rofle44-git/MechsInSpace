@@ -12,7 +12,6 @@ public partial class Player : CharacterBody2D {
 	Marker2D BulletSpawn;
 	PackedScene CurrentBullet;
 	float ReloadTime;
-	bool AllowShooting = true;
 	ProgressBar Health1;
 	ProgressBar Health2;
 	Shaker HealthShaker;
