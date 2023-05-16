@@ -2,6 +2,11 @@
 .godot/
 .build/
 .Ideas
+<<<<<<< HEAD
 .vs/
 Properties/
 ShootEmUp.csproj.user
+=======
+ShootEmUp.csproj
+ShootEmUp.sln
+>>>>>>> 140b1f91d23d79bd34aa37713411fdfe81a3578d
