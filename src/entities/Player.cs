@@ -75,7 +75,7 @@ public partial class Player : CharacterBody2D {
 	}
 
 	void Hurt(int amount) {
-		if (Health+amount <= 0) Die();
+		if (Health-amount <= 0) Die();
 		Health -= amount;
 		HealthShaker.Start();
 		SpriteShaker.Start();
