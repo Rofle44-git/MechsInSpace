@@ -12,7 +12,7 @@ public partial class Bullet : CharacterBody2D {
     private bool Expired;
 
     public override void _Ready() {
-        GetNode<LifetimeComponent>("LifetimeComponent").Connect("Expire", Callable.From(OnExpired));
+        GetNode<LifetimeComponent>("LifetimeComponent").Connect("Expire", Callable.From(QueueFree));
     }
 
     public override void _EnterTree() {
@@ -23,15 +23,10 @@ public partial class Bullet : CharacterBody2D {
         AddSibling(Effect);
     }
 
-    public override void _ExitTree() {
-        if (HitEffect == null || Expired) return;
+    public void Despawn() {
         Node2D Effect = HitEffect.Instantiate<Node2D>();
         Effect.GlobalPosition = HitPos;
         AddSibling(Effect);
-    }
-
-    private void OnExpired() {
-        Expired = true;
         QueueFree();
     }
 }
