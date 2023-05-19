@@ -5,7 +5,7 @@ public partial class Enemy : CharacterBody2D {
 	Node2D Player;
 	Vector2 DeltaPos;
 	[Export] public int Damage = 10;
-	[Export] private int Health = 60;
+	[Export] private int Health = 30;
 
 	public override void _Ready() {
 		Player = Global.Player;
