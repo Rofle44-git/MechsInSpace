@@ -18,5 +18,6 @@ public partial class ProjectileBullet : Bullet {
         Collider = Collision.GetCollider();
         if (!(Collider is Enemy)) return;
         ((Enemy)Collider).Hurt(Damage);
+        Despawn();
     }
 }
