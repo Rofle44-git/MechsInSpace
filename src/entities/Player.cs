@@ -62,7 +62,7 @@ public partial class Player : CharacterBody2D {
 				Collider = Collision.GetCollider();
 				if (Collider is Enemy) {
 					((Enemy)Collider).SelfDestruct();
-					Damage(((Enemy)Collider).Damage);
+					Hurt(((Enemy)Collider).Damage);
 				}
 			}
 		}
@@ -74,7 +74,7 @@ public partial class Player : CharacterBody2D {
 		ReloadTime = 1.0f/bulletInstance.ShotsPerSecond;
 	}
 
-	void Damage(int amount) {
+	void Hurt(int amount) {
 		if (Health+amount <= 0) Die();
 		Health -= amount;
 		HealthShaker.Start();
