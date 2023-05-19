@@ -20,10 +20,11 @@ public partial class Enemy : CharacterBody2D {
 	}
 
 	public void Hurt(int amount) {
-		
+		if (Health+amount <= 0) Die();
+		Health -= amount;
 	}
 
-	public void SelfDestruct() {
+	public void Die() {
 		QueueFree();
 	}
 }

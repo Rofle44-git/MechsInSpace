@@ -61,7 +61,7 @@ public partial class Player : CharacterBody2D {
 			if (Collision != null) {
 				Collider = Collision.GetCollider();
 				if (Collider is Enemy) {
-					((Enemy)Collider).SelfDestruct();
+					((Enemy)Collider).Die();
 					Hurt(((Enemy)Collider).Damage);
 				}
 			}
