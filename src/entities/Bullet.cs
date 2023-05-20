@@ -26,6 +26,7 @@ public partial class Bullet : CharacterBody2D {
     public void Despawn() {
         Node2D Effect = HitEffect.Instantiate<Node2D>();
         Effect.GlobalPosition = HitPos;
+        Effect.Rotation = Rotation-Mathf.Pi;
         AddSibling(Effect);
         QueueFree();
     }
