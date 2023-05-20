@@ -2,5 +2,5 @@ using Godot;
 
 public class Global {
     public static Node2D Player;
-    public static int MaxLifetime = 20;
+    public static int MaxLifetime = 3;
 }
