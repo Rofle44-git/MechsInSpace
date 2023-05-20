@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvak0a27mmr13"]
+[gd_scene load_steps=3 format=3 uid="uid://bvak0a27mmr13"]
 
 [ext_resource type="Script" path="res://src/entities/Enemy.cs" id="1_iglhu"]
+[ext_resource type="PackedScene" uid="uid://dosyyfkbdo2vk" path="res://content/effects/explosion.tscn" id="2_evlst"]
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 2
@@ -8,6 +9,7 @@ collision_mask = 25
 motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_iglhu")
+DeathEffect = ExtResource("2_evlst")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 

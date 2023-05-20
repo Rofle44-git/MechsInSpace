@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://dosyyfkbdo2vk"]
+
+[ext_resource type="PackedScene" uid="uid://o63eal80x0t1" path="res://src/objects/effect.tscn" id="1_mxtds"]
+[ext_resource type="Texture2D" uid="uid://ccvyebhduapel" path="res://assets/sprites/spark.png" id="2_u08v2"]
+
+[sub_resource type="Gradient" id="Gradient_tc4f6"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.314685, 0.594406)
+colors = PackedColorArray(1, 0, 0, 0.454902, 1, 0.133333, 0, 1, 1, 0.658333, 0.18, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g200r"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_tc4f6")
+width = 128
+
+[sub_resource type="Curve" id="Curve_gdqyt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.22372, 1.4, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_r3tue"]
+curve = SubResource("Curve_gdqyt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5sxbm"]
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 750.0
+initial_velocity_max = 2000.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 1.6
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_r3tue")
+color = Color(1, 1, 1, 0.686275)
+color_ramp = SubResource("GradientTexture1D_g200r")
+
+[node name="ShootSpark" instance=ExtResource("1_mxtds")]
+
+[node name="GPUParticles2D" parent="." index="0"]
+process_material = SubResource("ParticleProcessMaterial_5sxbm")
+texture = ExtResource("2_u08v2")
+lifetime = 0.3
+explosiveness = 0.8
+fixed_fps = 60
+visibility_rect = Rect2(0, -64, 360, 128)
+trail_enabled = true
+trail_lifetime = 0.1
+trail_sections = 2

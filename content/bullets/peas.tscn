@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://h23m5nlyn2bh" path="res://src/entities/projectile_bullet.tscn" id="1_fbi7e"]
 [ext_resource type="PackedScene" uid="uid://bdpg0r1g5moj7" path="res://content/effects/shoot_smoke.tscn" id="2_ri3qw"]
-[ext_resource type="PackedScene" path="res://content/effects/hit_spark.tscn" id="3_s4ilj"]
+[ext_resource type="PackedScene" uid="uid://coli207j31rdf" path="res://content/effects/hit_spark.tscn" id="3_s4ilj"]
 [ext_resource type="Texture2D" uid="uid://c4gcnv1bnd5tm" path="res://assets/sprites/pea.svg" id="4_r0ldl"]
 
 [sub_resource type="Curve" id="Curve_4wdlo"]
