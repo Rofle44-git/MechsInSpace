@@ -154,3 +154,24 @@ theme_override_styles/background = SubResource("StyleBoxEmpty_gablg")
 theme_override_styles/fill = SubResource("StyleBoxFlat_tsppf")
 value = 100.0
 show_percentage = false
+
+[node name="ScreenHUD" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="ScreenHUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ScreenHUD/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -5.0
+offset_bottom = 26.0
+grow_horizontal = 2
+text = "Coins: 10"
+horizontal_alignment = 2
+vertical_alignment = 1
