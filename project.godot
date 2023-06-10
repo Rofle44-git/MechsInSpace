@@ -23,6 +23,7 @@ config/name_localized={
 run/main_scene="res://src/static/main_menu.tscn"
 config/features=PackedStringArray("4.0", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+config/tags=PackedStringArray("game")
 
 [debug]
 
