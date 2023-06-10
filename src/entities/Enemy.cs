@@ -6,6 +6,7 @@ public partial class Enemy : CharacterBody2D {
 	Vector2 DeltaPos;
 	[Export] public int Damage = 10;
 	[Export] private int Health = 30;
+	[Export] private int Loot = 10;
 	[Export] private PackedScene DeathEffect;
 
 	public override void _Ready() {
@@ -26,6 +27,7 @@ public partial class Enemy : CharacterBody2D {
 	}
 
 	public void Die() {
+		Global.Money += Loot;
 		Node2D effect = DeathEffect.Instantiate<Node2D>();
 		effect.GlobalPosition = GlobalPosition;
 		AddSibling(effect);
