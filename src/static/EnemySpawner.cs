@@ -6,8 +6,8 @@ public partial class EnemySpawner : Node {
     [Export] PackedScene TargetEnemy;
     [ExportSubgroup("Quantity")]
     [Export(PropertyHint.Range, "1,16,0.1")] float StartPopulation = 0.6f;
-    [Export(PropertyHint.Range, "0,16,0.5")] float LinearGrowth = 0.6f;
-    [Export(PropertyHint.Range, "0,2,0.01")] float ExponentialGrowth = 1.8f;
+    [Export(PropertyHint.Range, "0,16,0.1")] float LinearGrowth = 0.4f;
+    [Export(PropertyHint.Range, "0,2,0.01")] float ExponentialGrowth = 1.7f;
     [ExportSubgroup("Range")]
     [Export] float MinRange = 570.0f;
     [Export] float MaxRange = 1000.0f;
