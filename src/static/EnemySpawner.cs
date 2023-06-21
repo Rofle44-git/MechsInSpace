@@ -5,9 +5,9 @@ public partial class EnemySpawner : Node {
     [Export] Node2D Enemies;
     [Export] PackedScene TargetEnemy;
     [ExportSubgroup("Quantity")]
-    [Export(PropertyHint.Range, "1,16,0.1")] float StartPopulation = 0.6f;
-    [Export(PropertyHint.Range, "0,16,0.1")] float LinearGrowth = 0.4f;
-    [Export(PropertyHint.Range, "0,2,0.01")] float ExponentialGrowth = 1.7f;
+    [Export(PropertyHint.Range, "1,16,0.1")] double StartPopulation = 0.6;
+    [Export(PropertyHint.Range, "0,16,0.1")] double LinearGrowth = 0.4;
+    [Export(PropertyHint.Range, "0,2,0.01")] double ExponentialGrowth = 1.7;
     [ExportSubgroup("Range")]
     [Export] float MinRange = 570.0f;
     [Export] float MaxRange = 1000.0f;
@@ -32,6 +32,6 @@ public partial class EnemySpawner : Node {
 
     private void NextWave() {
         Wave ++;
-        SpawnQueue = (int)(Mathf.Pow((float)Wave, ExponentialGrowth)*LinearGrowth+StartPopulation);
+        SpawnQueue = (int)(Mathf.Pow((double)Wave, ExponentialGrowth)*LinearGrowth+StartPopulation);
     }
 }
