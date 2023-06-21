@@ -1,20 +1,29 @@
 using Godot;
 
-public partial class Coin : RigidBody2D {
-	[Export] PackedScene DisappearEffect;
+public partial class Coin : Sprite2D {
+    public async override void _Ready() {
+        Vector2 randOffset = new Vector2(
+            GD.RandRange(-160, 160),
+            GD.RandRange(-160, 160)
+        );
 
-	public void GetCollected() {
-		// HOW DOES IT WORK
-		//Global.EmitSignal(SignalName.CoinPickedUp);
-		Node2D effect = DisappearEffect.Instantiate<Node2D>();
-		effect.GlobalPosition = GlobalPosition;
-		AddSibling(effect);
-		QueueFree();
-	}
+        Tween tween = CreateTween();
+        tween.SetTrans(Tween.TransitionType.Sine)
+            .SetEase(Tween.EaseType.Out)
+            .TweenProperty(this, "global_position", GlobalPosition+randOffset, GD.RandRange(0.07, 0.6));
+        
+        await ToSignal(tween, "finished");
 
-	private void _on_collect_area_body_entered(Node2D body) {
-		if (body == Global.Player) {
-			// GO GO GO START MOVING TOD A UHHHH PLAYER FROM GLOBAL:PLAYER NOW
-		}
-	}
+        tween = CreateTween();
+        tween.SetTrans(Tween.TransitionType.Sine)
+            .SetEase(Tween.EaseType.In)
+            .TweenProperty(this, "global_position", Global.CoinGoalPos, GD.RandRange(0.07, 0.6));
+        
+        tween.Finished += () => _OnArrived();
+    }
+
+    private void _OnArrived() {
+        Global._OnCoinCollected();
+        QueueFree();
+    }
 }
