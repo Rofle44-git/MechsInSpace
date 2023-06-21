@@ -1,10 +1,12 @@
 using Godot;
-using System;
 
 public partial class Game : Node2D {
-	[Export] Node2D Player;
+	[Export] public Player Player;
+	[Export] public HUD HUD;
 
 	public override void _Ready() {
+		Global.Game = this;
 		Global.Player = Player;
+		Global.HUD = HUD;
 	}
 }
