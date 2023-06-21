@@ -14,7 +14,7 @@ public partial class Coin : RigidBody2D {
 
 	private void _on_collect_area_body_entered(Node2D body) {
 		if (body == Global.Player) {
-			# GO GO GO START MOVING TOD A UHHHH PLAYER FROM GLOBAL:PLAYER NOW
+			// GO GO GO START MOVING TOD A UHHHH PLAYER FROM GLOBAL:PLAYER NOW
 		}
 	}
 }
