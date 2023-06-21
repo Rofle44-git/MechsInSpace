@@ -66,8 +66,9 @@ corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 26
+collision_mask = 58
 collision_priority = 10.0
+motion_mode = 1
 platform_on_leave = 2
 safe_margin = 8.0
 script = ExtResource("1_uq16e")
@@ -114,6 +115,7 @@ offset_left = -38.0
 offset_top = 30.0
 offset_right = 38.0
 offset_bottom = 45.0
+mouse_filter = 1
 script = ExtResource("4_ellcy")
 
 [node name="ShakeContainer" type="Control" parent="FloatingHUD"]
@@ -123,6 +125,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="Shaker" parent="FloatingHUD/ShakeContainer" node_paths=PackedStringArray("TargetNode") instance=ExtResource("4_imic2")]
 TargetNode = NodePath("..")
@@ -164,6 +167,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="Label" type="Label" parent="ScreenHUD/Control"]
 layout_mode = 1
@@ -172,6 +176,7 @@ anchor_right = 1.0
 offset_right = -5.0
 offset_bottom = 26.0
 grow_horizontal = 2
+mouse_filter = 1
 text = "Coins: 10"
 horizontal_alignment = 2
 vertical_alignment = 1

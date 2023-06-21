@@ -8,7 +8,7 @@ public partial class Player : CharacterBody2D {
 	Vector2 CameraOffset;
 	Camera2D Camera;
 	KinematicCollision2D Collision;
-	GodotObject Collider;
+	Node Collider;
 	Marker2D BulletSpawn;
 	PackedScene CurrentBullet;
 	float ReloadTime;
@@ -58,12 +58,14 @@ public partial class Player : CharacterBody2D {
 	
 		for (int i = 0; i < GetSlideCollisionCount(); i++) {
 			Collision = GetSlideCollision(i);
-			if (Collision != null) {
-				Collider = Collision.GetCollider();
-				if (Collider is Enemy) {
-					((Enemy)Collider).Die();
-					Hurt(((Enemy)Collider).Damage);
-				}
+			if (Collision == null) {continue;}
+			Collider = (Node)Collision.GetCollider();
+			if (Collider is Enemy) {
+				((Enemy)Collider).Die();
+				Hurt(((Enemy)Collider).Damage);	
+			}
+			else if (Collider is Coin) {
+				((Coin)Collider).GetCollected();
 			}
 		}
 	}

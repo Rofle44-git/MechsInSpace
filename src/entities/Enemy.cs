@@ -1,4 +1,5 @@
 using Godot;
+using System;
 
 public partial class Enemy : CharacterBody2D {
 	const int Speed = 250;
@@ -27,10 +28,15 @@ public partial class Enemy : CharacterBody2D {
 	}
 
 	public void Die() {
-		Global.Money += Loot;
 		Node2D effect = DeathEffect.Instantiate<Node2D>();
 		effect.GlobalPosition = GlobalPosition;
 		AddSibling(effect);
+		for (int i = 0; i < Loot; i++) {
+			RigidBody2D Coin = Global.Coin.Instantiate<RigidBody2D>();
+			Coin.GlobalPosition = GlobalPosition;
+			Coin.SetAxisVelocity((360*Vector2.One).Rotated((float)GD.RandRange(-Mathf.Pi, Mathf.Pi)));
+			AddSibling(Coin);
+		}
 		QueueFree();
 	}
 }
