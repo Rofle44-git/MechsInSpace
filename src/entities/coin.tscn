@@ -1,22 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bx08ud2dq7xca"]
+[gd_scene load_steps=3 format=3 uid="uid://bx08ud2dq7xca"]
 
 [ext_resource type="Script" path="res://src/entities/Coin.cs" id="1_64prk"]
 [ext_resource type="Texture2D" uid="uid://dua3whp8uaoih" path="res://assets/sprites/coin.svg" id="1_kn56u"]
-[ext_resource type="PackedScene" uid="uid://dnclbjwxem4xu" path="res://content/effects/coin_collect.tscn" id="2_yudw8"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_gekv4"]
-radius = 16.2788
-
-[node name="Coin" type="Node2D"]
-script = ExtResource("1_64prk")
-DisappearEffect = ExtResource("2_yudw8")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Coin" type="Sprite2D"]
+self_modulate = Color(1, 1, 1, 0.75)
 texture = ExtResource("1_kn56u")
-
-[node name="CollectArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectArea"]
-shape = SubResource("CircleShape2D_gekv4")
-
-[connection signal="body_entered" from="CollectArea" to="." method="_on_collect_area_body_entered"]
+script = ExtResource("1_64prk")
