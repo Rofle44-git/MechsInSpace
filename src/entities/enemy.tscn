@@ -10,6 +10,8 @@ motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_iglhu")
 DeathEffect = ExtResource("2_evlst")
+MaxHP = 40
+HP = 40
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 

@@ -1,14 +1,12 @@
 using Godot;
-using System;
 
-public partial class Enemy : CharacterBody2D {
+public partial class Enemy : Entity {
 	const int Speed = 250;
-	Node2D Player;
-	Vector2 DeltaPos;
 	[Export] public int Damage = 10;
-	[Export] private int Health = 30;
 	[Export] private int Loot = 10;
 	[Export] private PackedScene DeathEffect;
+	Node2D Player;
+	Vector2 DeltaPos;
 
 	public override void _Ready() {
 		Player = Global.Player;
@@ -22,21 +20,11 @@ public partial class Enemy : CharacterBody2D {
 		MoveAndSlide();
 	}
 
-	public void Hurt(int amount) {
-		if (Health-amount <= 0) Die();
-		Health -= amount;
-	}
-
-	public void Die() {
+	public override void _OnDeath() {
 		Node2D effect = DeathEffect.Instantiate<Node2D>();
 		effect.GlobalPosition = GlobalPosition;
 		AddSibling(effect);
-		for (int i = 0; i < Loot; i++) {
-			RigidBody2D Coin = Global.Coin.Instantiate<RigidBody2D>();
-			Coin.GlobalPosition = GlobalPosition;
-			Coin.SetAxisVelocity((360*Vector2.One).Rotated((float)GD.RandRange(-Mathf.Pi, Mathf.Pi)));
-			AddSibling(Coin);
-		}
-		QueueFree();
+		Global.SpawnCoin(Loot, GetGlobalTransformWithCanvas().Origin);
+		base._Die();
 	}
 }

@@ -1,35 +1,40 @@
 using Godot;
-using System;
 
-public partial class Player : CharacterBody2D {
+public partial class Player : Entity {
 	const int Speed = 300;
-	int Health;
+
+	[Export] PackedScene StarterBullet;
+	[Export] int MaxHealth;
+	[Export] ushort FramesPerHealthRegeneration;
+
 	Vector2 HalfScreenSize;
 	Vector2 CameraOffset;
 	Camera2D Camera;
+
 	KinematicCollision2D Collision;
 	Node Collider;
+
 	Marker2D BulletSpawn;
 	PackedScene CurrentBullet;
 	float ReloadTime;
+
 	ProgressBar Health1;
 	ProgressBar Health2;
 	Shaker HealthShaker;
 	Shaker SpriteShaker;
-	[Export] PackedScene StarterBullet;
-	[Export] int MaxHealth;
-	[Export] ulong FramesPerHealthRegeneration;
 
 	public override void _Ready() {
-		Health = MaxHealth;
 		Health1 = GetNode<ProgressBar>("FloatingHUD/ShakeContainer/Top");
 		Health2 = GetNode<ProgressBar>("FloatingHUD/ShakeContainer/Bottom");
-		Health1.Value = Health2.Value = Health;
+		Health1.Value = Health2.Value = HP;
 		Health1.MaxValue = Health2.MaxValue = MaxHealth;
+
 		HealthShaker = GetNode<Shaker>("FloatingHUD/ShakeContainer/Shaker");
 		SpriteShaker = GetNode<Shaker>("Sprite2D/Shaker");
+		
 		Camera = GetNode<Camera2D>("Camera2D");
 		HalfScreenSize = GetViewportRect().Size/2;
+
 		BulletSpawn = GetNode<Marker2D>("BulletSpawn");
 		SetBullet(StarterBullet);
 	}
@@ -47,7 +52,7 @@ public partial class Player : CharacterBody2D {
 		Rotation = Mathf.Atan2(CameraOffset.Y, CameraOffset.X);
 		Camera.Offset = Camera.Offset.Lerp(CameraOffset, (float)(7.2f*delta));
 
-		Health2.Value = Mathf.Lerp(Health2.Value, Health, 6.0f*delta);
+		Health2.Value = Mathf.Lerp(Health2.Value, HP, 6.0f*delta);
 	}
 
 	public override void _PhysicsProcess(double delta) {	
@@ -60,12 +65,9 @@ public partial class Player : CharacterBody2D {
 			Collision = GetSlideCollision(i);
 			if (Collision == null) {continue;}
 			Collider = (Node)Collision.GetCollider();
+			
 			if (Collider is Enemy) {
-				((Enemy)Collider).Die();
-				Hurt(((Enemy)Collider).Damage);	
-			}
-			else if (Collider is Coin) {
-				((Coin)Collider).GetCollected();
+				Harm(((Enemy)Collider).Damage); Collider.QueueFree();
 			}
 		}
 	}
@@ -76,21 +78,18 @@ public partial class Player : CharacterBody2D {
 		ReloadTime = 1.0f/bulletInstance.ShotsPerSecond;
 	}
 
-	void Hurt(int amount) {
-		if (Health-amount <= 0) Die();
-		Health -= amount;
-		HealthShaker.Start();
-		SpriteShaker.Start();
-		Health1.Value = Health;
+	public override void _OnHeal() {
+		Health1.Value = HP;
 	}
 
-	void Heal(int amount) {
-		if (Health+amount > MaxHealth) return;
-		Health += amount;
-		Health1.Value = Health;
+	public override void _OnHarm() {
+		HealthShaker.Start();
+		SpriteShaker.Start();
+		Health1.Value = HP;
 	}
-	
-	void Die() {
+
+	public override void _OnDeath() {
 		GetNode<AnimationPlayer>("Anim").Play("die");
+		base._Die();
 	}
 }
