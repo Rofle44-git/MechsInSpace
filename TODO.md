@@ -1,11 +1,12 @@
 # TODO
 
-Disclaimer: Despite it being a TODO list, nothing is guaranteed to be added and i'm just writing down ideas. 
+Disclaimer: Despite it being a TODO list, nothing is guaranteed to be added and i'm just writing down ideas.
 
 ## Game
 - Weapon selector
 - Sound effects
 - Deep red flash effect when player just got hit
+- A game over screen
 
 ## Shop
 - The shop itself obviously
