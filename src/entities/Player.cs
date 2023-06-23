@@ -16,7 +16,6 @@ public partial class Player : Entity {
 
 	Marker2D BulletSpawn;
 	PackedScene CurrentBullet;
-	float ReloadTime;
 
 	ProgressBar Health1;
 	ProgressBar Health2;
@@ -75,7 +74,7 @@ public partial class Player : Entity {
 	void SetBullet(PackedScene newBullet) {
 		Bullet bulletInstance = newBullet.Instantiate<Bullet>();
 		CurrentBullet = newBullet;
-		ReloadTime = 1.0f/bulletInstance.ShotsPerSecond;
+		SFXPlayer.Stream = bulletInstance.ShotSFXs;
 	}
 
 	public override void _OnHeal() {
