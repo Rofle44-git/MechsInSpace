@@ -1,11 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://b0khe5h4yviw"]
+[gd_scene load_steps=8 format=3 uid="uid://b0khe5h4yviw"]
 
 [ext_resource type="PackedScene" uid="uid://h23m5nlyn2bh" path="res://src/entities/projectile_bullet.tscn" id="1_fbi7e"]
 [ext_resource type="PackedScene" uid="uid://bdpg0r1g5moj7" path="res://content/effects/shoot_smoke.tscn" id="2_ri3qw"]
 [ext_resource type="PackedScene" uid="uid://coli207j31rdf" path="res://content/effects/hit_spark.tscn" id="3_s4ilj"]
-[ext_resource type="AudioStream" uid="uid://b7ahi7to77hja" path="res://assets/sounds/pea0.ogg" id="4_e80ip"]
 [ext_resource type="Texture2D" uid="uid://c4gcnv1bnd5tm" path="res://assets/sprites/pea.svg" id="4_r0ldl"]
-[ext_resource type="AudioStream" uid="uid://dsyb2qvvqxovf" path="res://assets/sounds/pea1.ogg" id="5_3mllw"]
 
 [sub_resource type="Curve" id="Curve_4wdlo"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
@@ -20,7 +18,6 @@ radius = 14.1421
 [node name="Peas" instance=ExtResource("1_fbi7e")]
 ShootEffect = ExtResource("2_ri3qw")
 HitEffect = ExtResource("3_s4ilj")
-ShotSFXs = Array[AudioStreamOggVorbis]([ExtResource("4_e80ip"), ExtResource("5_3mllw")])
 
 [node name="Trail2D" parent="." index="0" node_paths=PackedStringArray("Target")]
 width = 18.0

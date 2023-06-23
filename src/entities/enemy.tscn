@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bvak0a27mmr13"]
 
 [ext_resource type="Script" path="res://src/entities/Enemy.cs" id="1_iglhu"]
-[ext_resource type="PackedScene" uid="uid://dosyyfkbdo2vk" path="res://content/effects/explosion.tscn" id="2_evlst"]
+[ext_resource type="PackedScene" uid="uid://dosyyfkbdo2vk" path="res://content/effects/base.explosion.tscn" id="2_evlst"]
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 2

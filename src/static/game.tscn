@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dsndskaue8jlv" path="res://src/static/bg.tscn" id="1_py16m"]
 [ext_resource type="PackedScene" uid="uid://dvcjlm7ls0d0i" path="res://src/static/enemy_spawner.tscn" id="2_2wu10"]
 [ext_resource type="PackedScene" uid="uid://cxcvambxx70kw" path="res://src/entities/player.tscn" id="4_83g6l"]
-[ext_resource type="PackedScene" uid="uid://da8jaielixcnm" path="res://content/enemies/rude_dude.tscn" id="4_ei7yb"]
+[ext_resource type="PackedScene" uid="uid://da8jaielixcnm" path="res://content/enemies/base.rude_dude.tscn" id="4_ei7yb"]
 [ext_resource type="Script" path="res://src/static/HUD.cs" id="6_ncnqm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sdvo2"]
