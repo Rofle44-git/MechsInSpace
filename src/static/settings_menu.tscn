@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2mswonucajn"]
+
+[ext_resource type="PackedScene" uid="uid://cjthyoqgotih5" path="res://src/static/menu.tscn" id="1_balrh"]
+
+[node name="SettingsMenu" instance=ExtResource("1_balrh")]
+
+[node name="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" index="0"]
+text = "Settings"
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" index="1"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 2
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer" index="0"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "No settings added yet..."
+
+[node name="CheckButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Come back later in a future release"
+alignment = 2
