@@ -10,10 +10,13 @@ const LICENSE_PATH : String = \"res://licenses/\";
 
 
 func _ready() -> void:
+	text += \"Godot License\\n\\n\";
 	text += Engine.get_license_text();
+	text += \"\\nAssets Licenses\\n\\n\";
 
 	for file in DirAccess.get_files_at(LICENSE_PATH):
-		FileAccess.get_file_as_string(LICENSE_PATH.path_join(file));
+		text += FileAccess.get_file_as_string(LICENSE_PATH.path_join(file));
+
 "
 
 [node name="AboutMenu" instance=ExtResource("1_yf2iy")]
