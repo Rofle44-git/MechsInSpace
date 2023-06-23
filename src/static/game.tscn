@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c2frs80t328kr"]
+[gd_scene load_steps=13 format=3 uid="uid://c2frs80t328kr"]
 
 [ext_resource type="Script" path="res://src/static/Game.cs" id="1_6p11m"]
 [ext_resource type="PackedScene" uid="uid://dsndskaue8jlv" path="res://src/static/bg.tscn" id="1_py16m"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cxcvambxx70kw" path="res://src/entities/player.tscn" id="4_83g6l"]
 [ext_resource type="PackedScene" uid="uid://da8jaielixcnm" path="res://content/enemies/base.rude_dude.tscn" id="4_ei7yb"]
 [ext_resource type="Script" path="res://src/static/HUD.cs" id="6_ncnqm"]
+[ext_resource type="AudioStream" uid="uid://pe7f3bq8aqel" path="res://assets/sounds/coin0.ogg" id="7_he66t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sdvo2"]
 font_size = 28
@@ -49,6 +50,13 @@ _data = {
 "RESET": SubResource("Animation_hl515")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bk4xb"]
+streams_count = 1
+random_pitch = 1.2
+random_volume_offset_db = 4.0
+stream_0/stream = ExtResource("7_he66t")
+stream_0/weight = 1.0
+
 [node name="Game" type="Node2D" node_paths=PackedStringArray("Player", "HUD")]
 script = ExtResource("1_6p11m")
 Player = NodePath("Player")
@@ -67,7 +75,7 @@ FramesPerHealthRegeneration = 30
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HUD" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("CoinsContainer", "AnimPlayer", "CoinCountLabel")]
+[node name="HUD" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("CoinsContainer", "AnimPlayer", "CoinCountLabel", "CoinSFX")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -79,6 +87,7 @@ script = ExtResource("6_ncnqm")
 CoinsContainer = NodePath("CoinsContainer")
 AnimPlayer = NodePath("AnimationPlayer")
 CoinCountLabel = NodePath("CoinCount")
+CoinSFX = NodePath("AudioStreamPlayer")
 
 [node name="CoinCount" type="Label" parent="CanvasLayer/HUD"]
 layout_mode = 1
@@ -109,3 +118,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/HUD"]
+stream = SubResource("AudioStreamRandomizer_bk4xb")
+volume_db = 6.0
+max_polyphony = 60

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ct54dpgb2acv8"]
+[gd_scene load_steps=7 format=3 uid="uid://ct54dpgb2acv8"]
 
 [ext_resource type="Script" path="res://src/static/main_menu.gd" id="1_a4tj1"]
 [ext_resource type="Theme" uid="uid://dywyby257ioji" path="res://src/resources/main_menu.tres" id="1_v85qr"]
 [ext_resource type="Script" path="res://src/static/joke_label.gd" id="3_3h7cf"]
+[ext_resource type="Script" path="res://src/static/CSGlobalBridge.cs" id="3_kf2x8"]
 [ext_resource type="Script" path="res://src/static/AnimatedButton.cs" id="3_sv01t"]
 [ext_resource type="PackedScene" uid="uid://dsndskaue8jlv" path="res://src/static/bg.tscn" id="5_4inei"]
 
@@ -16,6 +17,9 @@ grow_vertical = 2
 theme = ExtResource("1_v85qr")
 script = ExtResource("1_a4tj1")
 override_debug_menu = true
+
+[node name="CSGlobalBridge" type="Node" parent="."]
+script = ExtResource("3_kf2x8")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("5_4inei")]
 

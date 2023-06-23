@@ -21,6 +21,7 @@ public partial class Enemy : Entity {
 	}
 
 	public override void _OnDeath() {
+		Global.PlaySoundAt(GlobalPosition, Global.EnemyDeath0);
 		Node2D effect = DeathEffect.Instantiate<Node2D>();
 		effect.GlobalPosition = GlobalPosition;
 		AddSibling(effect);

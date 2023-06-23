@@ -6,6 +6,8 @@ public partial class Player : Entity {
 	[Export] PackedScene StarterBullet;
 	[Export] int MaxHealth;
 	[Export] ushort FramesPerHealthRegeneration;
+	[Export] AudioStreamPlayer2D ShotSFX;
+	[Export] AudioStreamPlayer2D HitSFX;
 
 	Vector2 HalfScreenSize;
 	Vector2 CameraOffset;
@@ -40,6 +42,7 @@ public partial class Player : Entity {
 
 	public override void _UnhandledInput(InputEvent @event) {
 		if (!Input.IsActionJustPressed("shoot")) return;
+		ShotSFX.Play();
 		Bullet BulletInstance = CurrentBullet.Instantiate<Bullet>();
 		BulletInstance.GlobalPosition = BulletSpawn.GlobalPosition;
 		BulletInstance.GlobalRotation = BulletSpawn.GlobalRotation;
@@ -74,7 +77,7 @@ public partial class Player : Entity {
 	void SetBullet(PackedScene newBullet) {
 		Bullet bulletInstance = newBullet.Instantiate<Bullet>();
 		CurrentBullet = newBullet;
-		SFXPlayer.Stream = bulletInstance.ShotSFXs;
+		ShotSFX.Stream = bulletInstance.ShotSFXs;
 	}
 
 	public override void _OnHeal() {
@@ -82,6 +85,7 @@ public partial class Player : Entity {
 	}
 
 	public override void _OnHarm() {
+		HitSFX.Play();
 		HealthShaker.Start();
 		SpriteShaker.Start();
 		Health1.Value = HP;

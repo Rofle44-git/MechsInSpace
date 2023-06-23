@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://cxcvambxx70kw"]
+[gd_scene load_steps=17 format=3 uid="uid://cxcvambxx70kw"]
 
 [ext_resource type="Script" path="res://src/entities/Player.cs" id="1_uq16e"]
-[ext_resource type="PackedScene" uid="uid://b0khe5h4yviw" path="res://content/bullets/peas.tscn" id="2_hdhtq"]
+[ext_resource type="PackedScene" uid="uid://b0khe5h4yviw" path="res://content/bullets/base.pea.tscn" id="2_hdhtq"]
 [ext_resource type="Texture2D" uid="uid://dp8p4xuvhgftq" path="res://assets/sprites/player.svg" id="3_7eqfp"]
+[ext_resource type="AudioStream" uid="uid://nxu6bko8dp63" path="res://assets/sounds/player_hit0.ogg" id="3_aavmw"]
 [ext_resource type="Script" path="res://src/entities/FloatingHUD.cs" id="4_ellcy"]
 [ext_resource type="PackedScene" uid="uid://cu0o7hem11aqe" path="res://src/static/shaker.tscn" id="4_imic2"]
 [ext_resource type="Script" path="res://src/entities/Scope.cs" id="6_stays"]
@@ -65,7 +66,7 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("ShotSFX", "HitSFX")]
 collision_mask = 58
 collision_priority = 10.0
 motion_mode = 1
@@ -75,8 +76,15 @@ script = ExtResource("1_uq16e")
 StarterBullet = ExtResource("2_hdhtq")
 MaxHealth = 100
 FramesPerHealthRegeneration = 60
+ShotSFX = NodePath("ShotSFX")
+HitSFX = NodePath("HitSFX")
 MaxHP = 100
 HP = 100
+
+[node name="ShotSFX" type="AudioStreamPlayer2D" parent="."]
+
+[node name="HitSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_aavmw")
 
 [node name="Scope" type="Node2D" parent="." node_paths=PackedStringArray("From")]
 top_level = true

@@ -7,6 +7,9 @@ public partial class Bullet : CharacterBody2D {
     [ExportSubgroup("Effects")]
     [Export] PackedScene ShootEffect;
     [Export] PackedScene HitEffect;
+    [ExportSubgroup("SFX")]
+    [Export] public AudioStreamRandomizer ShotSFXs;
+    [Export] bool ConstantSFX;
     public Vector2 HitPos;
     private bool Expired;
 
