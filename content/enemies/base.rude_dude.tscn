@@ -3,14 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://bvak0a27mmr13" path="res://src/entities/enemy.tscn" id="1_2osw1"]
 [ext_resource type="Texture2D" uid="uid://sjghsxhxpfag" path="res://assets-raw/sprites/rude_dude.svg" id="2_44o03"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1udqa"]
-radius = 22.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_o036b"]
+radius = 22.0907
 
 [node name="RudeDude" instance=ExtResource("1_2osw1")]
-Speed = 200
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_44o03")
 
-[node name="CollisionShape2D" parent="." index="1"]
-shape = SubResource("CircleShape2D_1udqa")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_o036b")
