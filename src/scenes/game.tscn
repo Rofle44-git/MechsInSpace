@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c2frs80t328kr"]
+[gd_scene load_steps=18 format=3 uid="uid://c2frs80t328kr"]
 
 [ext_resource type="Script" path="res://src/scenes/Game.cs" id="1_6p11m"]
 [ext_resource type="PackedScene" uid="uid://dsndskaue8jlv" path="res://src/scenes/bg.tscn" id="1_py16m"]
@@ -6,8 +6,11 @@
 [ext_resource type="AudioStream" uid="uid://3l5j08eig2mc" path="res://assets-raw/sounds/amen-break-173bpm.ogg" id="2_21who"]
 [ext_resource type="PackedScene" uid="uid://cxcvambxx70kw" path="res://src/entities/player.tscn" id="4_83g6l"]
 [ext_resource type="PackedScene" uid="uid://da8jaielixcnm" path="res://content/enemies/base.rude_dude.tscn" id="4_ei7yb"]
+[ext_resource type="PackedScene" uid="uid://dkdp46og7gogo" path="res://content/enemies/base.meanie.tscn" id="6_ib2x3"]
 [ext_resource type="Script" path="res://src/scenes/HUD.cs" id="6_ncnqm"]
 [ext_resource type="AudioStream" uid="uid://pe7f3bq8aqel" path="res://assets-raw/sounds/coin0.ogg" id="7_he66t"]
+[ext_resource type="PackedScene" uid="uid://driydphlppvxf" path="res://content/enemies/base.asshole.tscn" id="7_ogpe6"]
+[ext_resource type="PackedScene" uid="uid://cyn3pg7dewdca" path="res://content/enemies/base.motherfucker.tscn" id="8_qamg0"]
 [ext_resource type="Texture2D" uid="uid://u6m3dm1cqk6m" path="res://assets-raw/sprites/vignette.png" id="9_n14uw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sdvo2"]
@@ -73,9 +76,33 @@ autoplay = true
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("1_py16m")]
 
-[node name="EnemySpawner" parent="." node_paths=PackedStringArray("Enemies") instance=ExtResource("2_2wu10")]
+[node name="RudeDudeSpawner" parent="." node_paths=PackedStringArray("Enemies") instance=ExtResource("2_2wu10")]
 Enemies = NodePath("../Enemies")
 TargetEnemy = ExtResource("4_ei7yb")
+StartPopulation = 1.0
+LinearGrowth = 2.0
+ExponentialGrowth = 0.4
+
+[node name="MeanieSpawner" parent="." node_paths=PackedStringArray("Enemies") instance=ExtResource("2_2wu10")]
+Enemies = NodePath("../Enemies")
+TargetEnemy = ExtResource("6_ib2x3")
+StartPopulation = -2.0
+LinearGrowth = 1.2
+ExponentialGrowth = 0.6
+
+[node name="AssholeSpawner" parent="." node_paths=PackedStringArray("Enemies") instance=ExtResource("2_2wu10")]
+Enemies = NodePath("../Enemies")
+TargetEnemy = ExtResource("7_ogpe6")
+StartPopulation = -4.0
+LinearGrowth = 1.0
+ExponentialGrowth = 0.7
+
+[node name="MotherfuckerSpawner" parent="." node_paths=PackedStringArray("Enemies") instance=ExtResource("2_2wu10")]
+Enemies = NodePath("../Enemies")
+TargetEnemy = ExtResource("8_qamg0")
+StartPopulation = -4.3
+LinearGrowth = 0.2
+ExponentialGrowth = 1.1
 
 [node name="Player" parent="." instance=ExtResource("4_83g6l")]
 FramesPerHealthRegeneration = 30
