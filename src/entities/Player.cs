@@ -2,23 +2,17 @@ using Godot;
 
 public partial class Player : Entity {
 	const int Speed = 300;
-
 	[Export] PackedScene StarterBullet;
-	[Export] int MaxHealth;
 	[Export] ushort FramesPerHealthRegeneration;
 	[Export] AudioStreamPlayer2D ShotSFX;
 	[Export] AudioStreamPlayer2D HitSFX;
-
 	Vector2 HalfScreenSize;
 	Vector2 CameraOffset;
 	Camera2D Camera;
-
 	KinematicCollision2D Collision;
 	Node Collider;
-
 	Marker2D BulletSpawn;
 	PackedScene CurrentBullet;
-
 	ProgressBar Health1;
 	ProgressBar Health2;
 	Shaker HealthShaker;
@@ -28,7 +22,7 @@ public partial class Player : Entity {
 		Health1 = GetNode<ProgressBar>("FloatingHUD/ShakeContainer/Top");
 		Health2 = GetNode<ProgressBar>("FloatingHUD/ShakeContainer/Bottom");
 		Health1.Value = Health2.Value = HP;
-		Health1.MaxValue = Health2.MaxValue = MaxHealth;
+		Health1.MaxValue = Health2.MaxValue = MaxHP;
 
 		HealthShaker = GetNode<Shaker>("FloatingHUD/ShakeContainer/Shaker");
 		SpriteShaker = GetNode<Shaker>("Sprite2D/Shaker");
@@ -58,6 +52,8 @@ public partial class Player : Entity {
 	}
 
 	public override void _PhysicsProcess(double delta) {	
+		Camera.Zoom = Vector2.One+Vector2.One*Global.Tensity*0.5f;
+
 		Velocity = Velocity.Lerp(Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down") * Speed, (float)(6.0f*delta));
 		MoveAndSlide();
 
@@ -82,6 +78,7 @@ public partial class Player : Entity {
 
 	public override void _OnHeal() {
 		Health1.Value = HP;
+		Global.HealthScale = HP/(float)MaxHP;
 	}
 
 	public override void _OnHarm() {
@@ -89,10 +86,11 @@ public partial class Player : Entity {
 		HealthShaker.Start();
 		SpriteShaker.Start();
 		Health1.Value = HP;
+		Global.HealthScale = HP/(float)MaxHP;
 	}
 
 	public override void _OnDeath() {
-		GetNode<AnimationPlayer>("Anim").Play("die");
+		Global.PlayerAlive = false;
 		base._Die();
 	}
 }

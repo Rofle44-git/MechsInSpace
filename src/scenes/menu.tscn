@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjthyoqgotih5"]
+
+[ext_resource type="PackedScene" uid="uid://dsndskaue8jlv" path="res://src/scenes/bg.tscn" id="1_5roms"]
+[ext_resource type="PackedScene" uid="uid://21qeel3mjn7i" path="res://src/widgets/back_to_main_menu_button.tscn" id="2_lup7o"]
+[ext_resource type="Script" path="res://src/widgets/BackToMainMenuButton.cs" id="3_wm3s2"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("1_5roms")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"BigMargin"
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_type_variation = &"MediumMargin"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_type_variation = &"HeaderLarge"
+text = "Menu Title"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackToMainMenuButton" parent="." instance=ExtResource("2_lup7o")]
+layout_mode = 0
+script = ExtResource("3_wm3s2")

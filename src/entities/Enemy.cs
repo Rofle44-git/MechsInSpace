@@ -14,14 +14,14 @@ public partial class Enemy : Entity {
 
 	public override void _PhysicsProcess(double delta) {
 		if (!IsInstanceValid(Player)) return;
-		DeltaPos = Player.Position-Position;
-		Rotation = Mathf.Atan2(DeltaPos.Y, DeltaPos.X);
-		Velocity = Speed * new Vector2(1.0f, 0.0f).Rotated(Rotation);
+			DeltaPos = Player.Position-Position;
+			Rotation = Mathf.Atan2(DeltaPos.Y, DeltaPos.X);
+			Velocity = Speed * new Vector2(1.0f, 0.0f).Rotated(Rotation);
 		MoveAndSlide();
 	}
 
 	public override void _OnDeath() {
-		Global.PlaySoundAt(GlobalPosition, Global.EnemyDeath0);
+		Global.PlaySoundAt(GlobalPosition, ContentManager.EnemyDeath0);
 		Node2D effect = DeathEffect.Instantiate<Node2D>();
 		effect.GlobalPosition = GlobalPosition;
 		AddSibling(effect);

@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://bx08ud2dq7xca"]
-
-[ext_resource type="Script" path="res://src/entities/Coin.cs" id="1_64prk"]
-[ext_resource type="Texture2D" uid="uid://dua3whp8uaoih" path="res://assets/sprites/coin.svg" id="1_kn56u"]
-
-[node name="Coin" type="Sprite2D"]
-self_modulate = Color(1, 1, 1, 0.75)
-texture = ExtResource("1_kn56u")
-script = ExtResource("1_64prk")

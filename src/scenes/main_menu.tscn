@@ -1,0 +1,92 @@
+[gd_scene load_steps=6 format=3 uid="uid://ct54dpgb2acv8"]
+
+[ext_resource type="Theme" uid="uid://dywyby257ioji" path="res://assets/main_menu.tres" id="1_8kaw5"]
+[ext_resource type="Script" path="res://src/scenes/MainMenu.cs" id="2_15vau"]
+[ext_resource type="Script" path="res://src/widgets/AnimatedButton.cs" id="3_sv01t"]
+[ext_resource type="Script" path="res://src/widgets/joke_label.gd" id="4_x8f4l"]
+[ext_resource type="PackedScene" uid="uid://dsndskaue8jlv" path="res://src/scenes/bg.tscn" id="5_4inei"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8kaw5")
+script = ExtResource("2_15vau")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("5_4inei")]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -108.0
+offset_right = 307.0
+offset_bottom = 108.0
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_constants/outline_size = 24
+text = "Shoot em up"
+
+[node name="JokeLabel" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_shadow_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/font_size = 16
+text = "...it's what they would have wanted"
+vertical_alignment = 2
+script = ExtResource("4_x8f4l")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Start" type="Button" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 24
+text = "Start"
+alignment = 2
+script = ExtResource("3_sv01t")
+
+[node name="Settings" type="Button" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 24
+text = "Settings"
+alignment = 2
+script = ExtResource("3_sv01t")
+
+[node name="About" type="Button" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 24
+text = "About"
+alignment = 2
+script = ExtResource("3_sv01t")
+
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/Start" to="." method="_OnStartPressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/Settings" to="." method="_OnSettingsPressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/About" to="." method="_OnAboutPressed"]

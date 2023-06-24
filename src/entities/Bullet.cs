@@ -17,19 +17,19 @@ public partial class Bullet : CharacterBody2D {
         GetNode<LifetimeComponent>("LifetimeComponent").Connect("Expire", Callable.From(QueueFree));
     }
 
-    public override void _EnterTree() {
-        if (ShootEffect == null) return;
-        Node2D Effect = ShootEffect.Instantiate<Node2D>();
-        Effect.GlobalPosition = GlobalPosition;
-        Effect.GlobalRotation = GlobalRotation;
-        AddSibling(Effect);
-    }
-
     public void Despawn() {
         Node2D Effect = HitEffect.Instantiate<Node2D>();
         Effect.GlobalPosition = HitPos;
         Effect.Rotation = Rotation-Mathf.Pi;
         AddSibling(Effect);
         QueueFree();
+    }
+    
+    public override void _EnterTree() {
+        if (ShootEffect == null) return;
+        Node2D Effect = ShootEffect.Instantiate<Node2D>();
+        Effect.GlobalPosition = GlobalPosition;
+        Effect.GlobalRotation = GlobalRotation;
+        AddSibling(Effect);
     }
 }

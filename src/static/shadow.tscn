@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://bu74qllq4cl7i"]
-
-[node name="Shadow" type="Sprite2D"]
-self_modulate = Color(0, 0, 0, 0.196078)
-scale = Vector2(1, 0.333)

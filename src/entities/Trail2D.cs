@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class Trail2D : Line2D {
 	[Export] Node2D Target;
@@ -7,7 +6,6 @@ public partial class Trail2D : Line2D {
 	[Export] bool Enabled = true;
 
 	public override void _Ready() {
-		// Clears points used as a preview
         ClearPoints();
 	}
 
