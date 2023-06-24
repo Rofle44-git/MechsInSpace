@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyn3pg7dewdca"]
+
+[ext_resource type="PackedScene" uid="uid://bvak0a27mmr13" path="res://src/entities/enemy.tscn" id="1_h7evb"]
+[ext_resource type="Texture2D" uid="uid://mrra7w6777k8" path="res://assets-raw/sprites/motherfucker.svg" id="2_r5ber"]
+
+[node name="Motherfucker" instance=ExtResource("1_h7evb")]
+Damage = 192
+Loot = 192
+MaxHP = 500
+HP = 500
+Speed = 400
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_r5ber")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="1"]
+polygon = PackedVector2Array(-58, 32, -32, 58, -8, 34, 16, 34, 34, 16, 34, -16, 16, -34, -8, -34, -32, -58, -58, -32, -34, -8, -34, 8)
