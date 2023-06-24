@@ -57,6 +57,7 @@ ShotSFX = NodePath("ShotSFX")
 HitSFX = NodePath("HitSFX")
 MaxHP = 100
 HP = 100
+Speed = 350
 
 [node name="ShotSFX" type="AudioStreamPlayer2D" parent="."]
 volume_db = 3.0

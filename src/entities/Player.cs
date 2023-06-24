@@ -1,7 +1,6 @@
 using Godot;
 
 public partial class Player : Entity {
-	const int Speed = 300;
 	[Export] PackedScene StarterBullet;
 	[Export] ushort FramesPerHealthRegeneration;
 	[Export] AudioStreamPlayer2D ShotSFX;

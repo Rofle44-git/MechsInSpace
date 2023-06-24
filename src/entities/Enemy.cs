@@ -1,7 +1,6 @@
 using Godot;
 
 public partial class Enemy : Entity {
-	const int Speed = 250;
 	[Export] public int Damage = 10;
 	[Export] private int Loot = 10;
 	[Export] private PackedScene DeathEffect;

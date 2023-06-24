@@ -3,6 +3,7 @@ using Godot;
 public partial class Entity : CharacterBody2D {
 	[Export(PropertyHint.Range, "0,32768,1")] public int MaxHP;
 	[Export(PropertyHint.Range, "0,32768,1")] public int HP;
+	[Export(PropertyHint.Range, "0,32768,1")] public int Speed;
 
 	public void Heal(int amount) {
 		if (HP>=MaxHP) {HP = MaxHP; _OnMaxHeal(); return;}
