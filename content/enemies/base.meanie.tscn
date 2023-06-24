@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkdp46og7gogo"]
+
+[ext_resource type="PackedScene" uid="uid://bvak0a27mmr13" path="res://src/entities/enemy.tscn" id="1_xkfre"]
+[ext_resource type="Texture2D" uid="uid://ban0mdb6p6gns" path="res://assets-raw/sprites/meanie.svg" id="2_bm7rb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5mmny"]
+size = Vector2(52, 52)
+
+[node name="Meanie" instance=ExtResource("1_xkfre")]
+Damage = 22
+Loot = 22
+MaxHP = 80
+HP = 80
+Speed = 300
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_bm7rb")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_5mmny")
