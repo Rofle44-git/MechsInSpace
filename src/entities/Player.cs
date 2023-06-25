@@ -37,12 +37,11 @@ public partial class Player : Entity {
 	}
 
 	public override void _Process(double delta) {
+		Health2.Value = Mathf.Lerp(Health2.Value, HP, 6.0f*delta);
 		if (!Global.IsPlayerAlive) return;
 		CameraOffset = (GetViewport().GetMousePosition()-HalfScreenSize).Normalized()*60;
 		Rotation = Mathf.Atan2(CameraOffset.Y, CameraOffset.X);
 		Camera.Offset = Camera.Offset.Lerp(CameraOffset, (float)(7.2f*delta));
-
-		Health2.Value = Mathf.Lerp(Health2.Value, HP, 6.0f*delta);
 	}
 
 	public override void _PhysicsProcess(double delta) {
@@ -85,6 +84,10 @@ public partial class Player : Entity {
 	}
 
 	public override void _OnDeath() {
+		HealthShaker.Start();
+		SpriteShaker.Start();
+		Health1.Value = HP;
+		Global.HealthScale = HP/(float)MaxHP;
 		Global.IsPlayerAlive = false;
 		DeathSFX.Play();
 		Global.SpawnShockwave(GetGlobalTransformWithCanvas().Origin);
