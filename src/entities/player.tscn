@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cxcvambxx70kw"]
+[gd_scene load_steps=16 format=3 uid="uid://cxcvambxx70kw"]
 
 [ext_resource type="Script" path="res://src/entities/Player.cs" id="1_uq16e"]
 [ext_resource type="PackedScene" uid="uid://b0khe5h4yviw" path="res://content/bullets/base.pea.tscn" id="2_hdhtq"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://dhkv8fg0evthd" path="res://content/effects/base.player_death_effect.tscn" id="3_ma5cx"]
 [ext_resource type="Script" path="res://src/nodes/FloatingHUD.cs" id="4_ellcy"]
 [ext_resource type="PackedScene" uid="uid://cu0o7hem11aqe" path="res://src/nodes/shaker.tscn" id="4_imic2"]
-[ext_resource type="Script" path="res://src/nodes/Scope.cs" id="6_stays"]
 
 [sub_resource type="Curve" id="Curve_ppqs3"]
 bake_resolution = 96
@@ -78,11 +77,6 @@ volume_db = 3.0
 
 [node name="HitSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_aavmw")
-
-[node name="Scope" type="Node2D" parent="." node_paths=PackedStringArray("From")]
-top_level = true
-script = ExtResource("6_stays")
-From = NodePath("../BulletSpawn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_7eqfp")
