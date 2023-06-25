@@ -9,6 +9,7 @@ public partial class Enemy : Entity {
 
 	public override void _Ready() {
 		Player = Global.Player;
+		AddToGroup("Enemies");
 	}
 
 	public override void _PhysicsProcess(double delta) {

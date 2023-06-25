@@ -13,10 +13,6 @@ public partial class Bullet : CharacterBody2D {
     public Vector2 HitPos;
     private bool Expired;
 
-    public override void _Ready() {
-        GetNode<LifetimeComponent>("LifetimeComponent").Connect("Expire", Callable.From(QueueFree));
-    }
-
     public void Despawn() {
         Node2D Effect = HitEffect.Instantiate<Node2D>();
         Effect.GlobalPosition = HitPos;

@@ -2,6 +2,7 @@ using Godot;
 
 public partial class HUD : Control {
 	[Export] public Control CoinsContainer;
+	[Export] public Control Shockwaves;
 	[Export] AnimationPlayer AnimPlayer;
 	[Export] Label CoinCountLabel;
 	[Export] AudioStreamPlayer CoinSFX;

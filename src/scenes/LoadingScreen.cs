@@ -9,6 +9,7 @@ public partial class LoadingScreen : Label {
 	private PackedScene AboutScene;
 	private PackedScene GameScene;
 	private PackedScene Coin;
+	private PackedScene Shockwave;
 	private AudioStreamOggVorbis EnemyDeath0;
     private bool IsLoading;
 
@@ -33,6 +34,7 @@ public partial class LoadingScreen : Label {
 		ContentManager.SettingsScene = SettingsScene;
 		ContentManager.AboutScene = AboutScene;
 		ContentManager.Coin = Coin;
+        ContentManager.Shockwave = Shockwave;
 		ContentManager.EnemyDeath0 = EnemyDeath0;
 
 		GetTree().ChangeSceneToPacked(ContentManager.MainMenu);
@@ -57,6 +59,8 @@ public partial class LoadingScreen : Label {
 		GameScene = ResourceLoader.Load<PackedScene>("res://src/scenes/game.tscn");
 		CurrentFile = "Loading: coin.tscn";
 		Coin = ResourceLoader.Load<PackedScene>("res://src/objects/coin.tscn");
+        CurrentFile = "Loading: shockwave.tscn";
+        Shockwave = ResourceLoader.Load<PackedScene>("res://src/objects/shockwave.tscn");
 		CurrentFile = "Loading: enemy_death0.ogg";
 		EnemyDeath0 = ResourceLoader.Load<AudioStreamOggVorbis>("res://assets-raw/sounds/enemy_death0.ogg");
 

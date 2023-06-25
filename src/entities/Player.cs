@@ -2,38 +2,32 @@ using Godot;
 
 public partial class Player : Entity {
 	[Export] PackedScene StarterBullet;
+	[Export] PackedScene DeathEffect;
 	[Export] ushort FramesPerHealthRegeneration;
 	[Export] AudioStreamPlayer2D ShotSFX;
 	[Export] AudioStreamPlayer2D HitSFX;
+	[Export] AudioStreamPlayer2D DeathSFX;
+	[Export] ProgressBar Health1;
+	[Export] ProgressBar Health2;
+	[Export] Shaker HealthShaker;
+	[Export] Shaker SpriteShaker;
+	[Export] Marker2D BulletSpawn;
+	[Export] Camera2D Camera;
 	Vector2 HalfScreenSize;
 	Vector2 CameraOffset;
-	Camera2D Camera;
 	KinematicCollision2D Collision;
 	Node Collider;
-	Marker2D BulletSpawn;
 	PackedScene CurrentBullet;
-	ProgressBar Health1;
-	ProgressBar Health2;
-	Shaker HealthShaker;
-	Shaker SpriteShaker;
 
 	public override void _Ready() {
-		Health1 = GetNode<ProgressBar>("FloatingHUD/ShakeContainer/Top");
-		Health2 = GetNode<ProgressBar>("FloatingHUD/ShakeContainer/Bottom");
 		Health1.Value = Health2.Value = HP;
 		Health1.MaxValue = Health2.MaxValue = MaxHP;
-
-		HealthShaker = GetNode<Shaker>("FloatingHUD/ShakeContainer/Shaker");
-		SpriteShaker = GetNode<Shaker>("Sprite2D/Shaker");
-		
-		Camera = GetNode<Camera2D>("Camera2D");
 		HalfScreenSize = GetViewportRect().Size/2;
-
-		BulletSpawn = GetNode<Marker2D>("BulletSpawn");
 		SetBullet(StarterBullet);
 	}
 
 	public override void _UnhandledInput(InputEvent @event) {
+		if (!Global.IsPlayerAlive) return;
 		if (!Input.IsActionJustPressed("shoot")) return;
 		ShotSFX.Play();
 		Bullet BulletInstance = CurrentBullet.Instantiate<Bullet>();
@@ -43,6 +37,7 @@ public partial class Player : Entity {
 	}
 
 	public override void _Process(double delta) {
+		if (!Global.IsPlayerAlive) return;
 		CameraOffset = (GetViewport().GetMousePosition()-HalfScreenSize).Normalized()*60;
 		Rotation = Mathf.Atan2(CameraOffset.Y, CameraOffset.X);
 		Camera.Offset = Camera.Offset.Lerp(CameraOffset, (float)(7.2f*delta));
@@ -50,7 +45,8 @@ public partial class Player : Entity {
 		Health2.Value = Mathf.Lerp(Health2.Value, HP, 6.0f*delta);
 	}
 
-	public override void _PhysicsProcess(double delta) {	
+	public override void _PhysicsProcess(double delta) {
+		if (!Global.IsPlayerAlive) return;
 		Camera.Zoom = Vector2.One+Vector2.One*Global.Tensity*0.5f;
 
 		Velocity = Velocity.Lerp(Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down") * Speed, (float)(6.0f*delta));
@@ -90,6 +86,11 @@ public partial class Player : Entity {
 
 	public override void _OnDeath() {
 		Global.IsPlayerAlive = false;
-		base._Die();
+		DeathSFX.Play();
+		Global.SpawnShockwave(GetGlobalTransformWithCanvas().Origin);
+		Effect effect = DeathEffect.Instantiate<Effect>();
+		effect.GlobalPosition = GlobalPosition;
+		AddSibling(effect);
+		EmitSignal(SignalName.OnDeath);
 	}
 }

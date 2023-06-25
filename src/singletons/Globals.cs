@@ -19,6 +19,12 @@ public partial class Global : Node {
         }
     }
 
+    public static void SpawnShockwave(Vector2 position) {
+        Shockwave shockwave = ContentManager.Shockwave.Instantiate<Shockwave>();
+        shockwave.TargetPosition = position;
+        HUD.Shockwaves.AddChild(shockwave);
+    }
+
     public static void PlaySoundAt(Vector2 globalPosition, AudioStreamOggVorbis sound) {
         AudioStreamPlayer2D tempAudioPlayer = new AudioStreamPlayer2D();
         tempAudioPlayer.GlobalPosition = globalPosition;

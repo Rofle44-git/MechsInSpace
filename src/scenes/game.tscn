@@ -119,7 +119,7 @@ FramesPerHealthRegeneration = 30
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HUD" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("CoinsContainer", "AnimPlayer", "CoinCountLabel", "CoinSFX")]
+[node name="HUD" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("CoinsContainer", "Shockwaves", "AnimPlayer", "CoinCountLabel", "CoinSFX")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -129,6 +129,7 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("6_ncnqm")
 CoinsContainer = NodePath("CoinsContainer")
+Shockwaves = NodePath("Shockwaves")
 AnimPlayer = NodePath("AnimationPlayer")
 CoinCountLabel = NodePath("CoinCount")
 CoinSFX = NodePath("AudioStreamPlayer")
@@ -171,7 +172,17 @@ stream = SubResource("AudioStreamRandomizer_bk4xb")
 volume_db = 2.0
 max_polyphony = 60
 
+[node name="Shockwaves" type="Control" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="Vignette" type="Sprite2D" parent="CanvasLayer"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.6)
 texture = ExtResource("9_n14uw")
 centered = false
