@@ -3,8 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://lwurvoj0vyr3" path="res://src/entities/bullet.tscn" id="1_0lcfp"]
 [ext_resource type="Script" path="res://src/entities/InstantBullet.cs" id="2_vcuxf"]
 
-[node name="InstantBullet" instance=ExtResource("1_0lcfp")]
+[node name="InstantBullet" node_paths=PackedStringArray("Ray", "Line") instance=ExtResource("1_0lcfp")]
 script = ExtResource("2_vcuxf")
+Ray = NodePath("RayCast2D")
+Line = NodePath("Line2D")
 
 [node name="RayCast2D" type="RayCast2D" parent="." index="0"]
 
