@@ -70,7 +70,7 @@ Speed = 350
 
 [node name="DeathSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_g518b")
-volume_db = 12.0
+volume_db = 8.0
 
 [node name="ShotSFX" type="AudioStreamPlayer2D" parent="."]
 volume_db = 3.0
