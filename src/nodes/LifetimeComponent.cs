@@ -6,6 +6,7 @@ public partial class LifetimeComponent : Node {
 	Timer LifetimeTimer;
 
     public override void _Ready() {
+		Expire += () => GetParent<Node>().QueueFree();
 		LifetimeTimer = new Timer();
 		LifetimeTimer.WaitTime = (LifetimeOverride == 0) ? Global.MaxLifetime : LifetimeOverride;
 		AddChild(LifetimeTimer);

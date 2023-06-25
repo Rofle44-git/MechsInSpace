@@ -1,6 +1,7 @@
 using Godot;
 
 public partial class Entity : CharacterBody2D {
+	[Signal] public delegate void OnDeathEventHandler();
 	[Export(PropertyHint.Range, "0,32768,1")] public int MaxHP;
 	[Export(PropertyHint.Range, "0,32768,1")] public int HP;
 	[Export(PropertyHint.Range, "0,32768,1")] public int Speed;
@@ -18,6 +19,9 @@ public partial class Entity : CharacterBody2D {
 	public virtual void _OnHeal() {}
 	public virtual void _OnMaxHeal() {_OnHeal();}
 	public virtual void _OnHarm() {}
-	public virtual void _OnDeath() {_Die();}
+	public virtual void _OnDeath() {
+		EmitSignal(SignalName.OnDeath);
+		_Die();
+	}
 	public virtual void _Die() {QueueFree();}
 }
