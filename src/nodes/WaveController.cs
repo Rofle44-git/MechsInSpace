@@ -25,9 +25,7 @@ public partial class WaveController : Node {
 			Enemies.AddChild(Instance);
 			SpawnQueue.RemoveAt(QueueIndex);
 		}
-		else if (Enemies.GetChildCount() == 0 && !Queueing) {
-			// Wave finished
-			GD.Print("Wave ", Wave, " completed");			
+		else if (Enemies.GetChildCount() == 0 && !Queueing) {		
 			Wave ++;
 			StartGeneratingWaveQueue(Wave);
 			EmitSignal(SignalName.WaveStarting, Wave);
@@ -36,9 +34,7 @@ public partial class WaveController : Node {
 
 	private async void StartGeneratingWaveQueue(int wave) {
 		Queueing = true;
-		GD.Print("Queueing enemy waves...");
 		SpawnQueue = await GenerateWaveQueue(wave);
-		GD.Print("Finished queueing enemy waves");
 		Queueing = false;
 	}
 
@@ -48,7 +44,6 @@ public partial class WaveController : Node {
 			for (int i = 0; i < waveEntry.GetEnemyCount(wave); i++) {
 				queue.Add(waveEntry.TargetEnemy.Instantiate<Enemy>());
 			}
-			GD.Print("Queued ", waveEntry.GetEnemyCountString());
 			await Task.Delay(1);
 		}
 		return queue;
