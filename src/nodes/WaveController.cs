@@ -2,6 +2,7 @@ using Godot;
 using System.Threading.Tasks;
 
 public partial class WaveController : Node {
+	[Signal] public delegate void WaveStartingEventHandler(int wave);
 	[Export] bool Enabled = true;
 	[Export] Node2D Enemies;
 	[Export] Godot.Collections.Array<WaveEntry> WaveEntries = new Godot.Collections.Array<WaveEntry>();
@@ -29,6 +30,7 @@ public partial class WaveController : Node {
 			GD.Print("Wave ", Wave, " completed");			
 			Wave ++;
 			StartGeneratingWaveQueue(Wave);
+			EmitSignal(SignalName.WaveStarting, Wave);
 		}
 	}
 

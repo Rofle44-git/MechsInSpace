@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c2frs80t328kr"]
+[gd_scene load_steps=24 format=3 uid="uid://c2frs80t328kr"]
 
 [ext_resource type="Script" path="res://src/scenes/Game.cs" id="1_6p11m"]
 [ext_resource type="PackedScene" uid="uid://dsndskaue8jlv" path="res://src/scenes/bg.tscn" id="1_py16m"]
@@ -6,19 +6,42 @@
 [ext_resource type="PackedScene" uid="uid://cxcvambxx70kw" path="res://src/entities/player.tscn" id="4_83g6l"]
 [ext_resource type="PackedScene" uid="uid://da8jaielixcnm" path="res://content/enemies/base.rude_dude.tscn" id="4_ei7yb"]
 [ext_resource type="PackedScene" uid="uid://da8x8xnwpja5d" path="res://src/nodes/wave_controller.tscn" id="4_weh6i"]
+[ext_resource type="PackedScene" uid="uid://dkdp46og7gogo" path="res://content/enemies/base.meanie.tscn" id="5_grved"]
 [ext_resource type="Script" path="res://src/resources/WaveEntry.cs" id="6_dkp1w"]
 [ext_resource type="Script" path="res://src/scenes/HUD.cs" id="6_ncnqm"]
 [ext_resource type="AudioStream" uid="uid://pe7f3bq8aqel" path="res://assets-raw/sounds/coin0.ogg" id="7_he66t"]
+[ext_resource type="PackedScene" uid="uid://driydphlppvxf" path="res://content/enemies/base.asshole.tscn" id="7_yhu4x"]
+[ext_resource type="PackedScene" uid="uid://cyn3pg7dewdca" path="res://content/enemies/base.motherfucker.tscn" id="8_dd60n"]
 [ext_resource type="PackedScene" uid="uid://qobonixwlc8s" path="res://src/widgets/animated_wave_display.tscn" id="9_mtug5"]
 [ext_resource type="Texture2D" uid="uid://u6m3dm1cqk6m" path="res://assets-raw/sprites/vignette.png" id="9_n14uw"]
-[ext_resource type="Script" path="res://src/widgets/AnimatedWaveDisplay.cs" id="10_6gbox"]
 
-[sub_resource type="Resource" id="Resource_vogt8"]
+[sub_resource type="Resource" id="Resource_2qcle"]
 script = ExtResource("6_dkp1w")
 TargetEnemy = ExtResource("4_ei7yb")
 StartPopulation = 1.0
 LinearGrowth = 2.0
 ExponentialGrowth = 0.4
+
+[sub_resource type="Resource" id="Resource_uelda"]
+script = ExtResource("6_dkp1w")
+TargetEnemy = ExtResource("5_grved")
+StartPopulation = -2.0
+LinearGrowth = 1.2
+ExponentialGrowth = 0.6
+
+[sub_resource type="Resource" id="Resource_0nbp3"]
+script = ExtResource("6_dkp1w")
+TargetEnemy = ExtResource("7_yhu4x")
+StartPopulation = -4.0
+LinearGrowth = 1.0
+ExponentialGrowth = 0.7
+
+[sub_resource type="Resource" id="Resource_8b7mw"]
+script = ExtResource("6_dkp1w")
+TargetEnemy = ExtResource("8_dd60n")
+StartPopulation = -4.3
+LinearGrowth = 0.2
+ExponentialGrowth = 1.1
 
 [sub_resource type="LabelSettings" id="LabelSettings_sdvo2"]
 font_size = 28
@@ -85,7 +108,9 @@ autoplay = true
 
 [node name="WaveController" parent="." node_paths=PackedStringArray("Enemies") instance=ExtResource("4_weh6i")]
 Enemies = NodePath("../Enemies")
-WaveEntries = [SubResource("Resource_vogt8"), SubResource("Resource_vogt8"), SubResource("Resource_vogt8"), SubResource("Resource_vogt8")]
+WaveEntries = [SubResource("Resource_2qcle"), SubResource("Resource_uelda"), SubResource("Resource_0nbp3"), SubResource("Resource_8b7mw")]
+MinRange = 600.0
+MaxRange = 1800.0
 
 [node name="Player" parent="." instance=ExtResource("4_83g6l")]
 FramesPerHealthRegeneration = 30
@@ -110,7 +135,6 @@ CoinSFX = NodePath("AudioStreamPlayer")
 
 [node name="AnimatedWaveDisplay" parent="CanvasLayer/HUD" instance=ExtResource("9_mtug5")]
 layout_mode = 1
-script = ExtResource("10_6gbox")
 
 [node name="CoinCount" type="Label" parent="CanvasLayer/HUD"]
 layout_mode = 1
@@ -151,3 +175,7 @@ max_polyphony = 60
 self_modulate = Color(1, 1, 1, 0.6)
 texture = ExtResource("9_n14uw")
 centered = false
+
+[connection signal="WaveStarting" from="WaveController" to="CanvasLayer/HUD/AnimatedWaveDisplay" method="DisplayNextWave"]
+
+[editable path="CanvasLayer/HUD/AnimatedWaveDisplay"]
