@@ -23,7 +23,6 @@ public partial class LoadingScreen : Label {
     private async void StartLoadingContent() {
         IsLoading = true;
 
-        // Run the file processing task asynchronously
         await Task.Run(async () => {
             await LoadContent();
         });
