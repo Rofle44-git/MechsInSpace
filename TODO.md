@@ -12,7 +12,7 @@ Disclaimer: Despite it being a TODO list, nothing is guaranteed to be added and 
 - Deep red flash effect when player just got hit
 - A game over screen
 - Global screen shake function with 3 strength levels
-- AnimatedWaveDisplay that moves past the screen
+- ~~AnimatedWaveDisplay that moves past the screen~~
 - Dramatic death effect
 
 ## Shop
