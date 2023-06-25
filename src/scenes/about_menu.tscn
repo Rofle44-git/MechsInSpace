@@ -10,12 +10,12 @@ const LICENSE_PATH : String = \"res://licenses/\";
 
 
 func _ready() -> void:
-	text += \"Godot License\\n\\n\";
+	text += \"[ Godot License ]\\n\\n\";
 	text += Engine.get_license_text();
-	text += \"\\nAssets Licenses\\n\\n\";
+	text += \"\\n[ Assets and Addons Licenses ]\\n\\n\";
 
 	for file in DirAccess.get_files_at(LICENSE_PATH):
-		text += FileAccess.get_file_as_string(LICENSE_PATH.path_join(file));
+		text += \"  \"+file+\"\\n\"+FileAccess.get_file_as_string(LICENSE_PATH.path_join(file));
 
 "
 
@@ -34,3 +34,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 autowrap_mode = 3
 script = SubResource("GDScript_sqemk")
+
+[node name="BackToMainMenuButton" parent="." index="2"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 158.0
+offset_bottom = 31.0
