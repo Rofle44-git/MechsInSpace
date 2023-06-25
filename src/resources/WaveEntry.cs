@@ -25,26 +25,4 @@ public partial class WaveEntry : Resource {
 		if (!IsSetUp) Setup();
 		return EnemyName + "(" + Mathf.Clamp(CachedEnemyCount, 0, int.MaxValue).ToString() + ")";
 	}
-	
-	/* public override void _PhysicsProcess(double delta) {
-		if (Enabled && IsInstanceValid(Global.Player)) {
-			if (SpawnQueue > 0) {
-				SpawnQueue --;
-				Instance = TargetEnemy.Instantiate<Node2D>();
-				Instance.Position = new Vector2(1, 0).Rotated((float)GD.RandRange(0, Mathf.Tau))*(float)GD.RandRange(MinRange, MaxRange) + Global.Player.Position;
-				Enemies.AddChild(Instance);
-			}
-			else if (Enemies.GetChildCount() == 0) {
-				// TODO: Timer and effect for next wave transition
-				NextWave();
-			}
-		}
-	} */
-
-	/* private void NextWave() {
-		Wave ++;
-		SpawnQueue = GetEnemyCount(Wave);
-		GD.PrintRich("Spawning [b]", EnemyName, "(", SpawnQueue, "[/b])");
-	} */
-
 }
