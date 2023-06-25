@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cxcvambxx70kw"]
+[gd_scene load_steps=18 format=3 uid="uid://cxcvambxx70kw"]
 
 [ext_resource type="Script" path="res://src/entities/Player.cs" id="1_uq16e"]
 [ext_resource type="PackedScene" uid="uid://b0khe5h4yviw" path="res://content/bullets/base.pea.tscn" id="2_hdhtq"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dhkv8fg0evthd" path="res://content/effects/base.player_death_effect.tscn" id="3_ma5cx"]
 [ext_resource type="Script" path="res://src/nodes/FloatingHUD.cs" id="4_ellcy"]
 [ext_resource type="PackedScene" uid="uid://cu0o7hem11aqe" path="res://src/nodes/shaker.tscn" id="4_imic2"]
+[ext_resource type="PackedScene" uid="uid://bfqmra3rfw32" path="res://src/nodes/shakeable_camera_2d.tscn" id="8_dt6eg"]
+[ext_resource type="Script" path="res://src/nodes/ShakeableCamera2D.cs" id="9_2c7x7"]
 
 [sub_resource type="Curve" id="Curve_ppqs3"]
 bake_resolution = 96
@@ -45,13 +47,14 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("ShotSFX", "HitSFX", "DeathSFX", "Health1", "Health2", "HealthShaker", "SpriteShaker", "BulletSpawn", "Camera")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Camera", "ShotSFX", "HitSFX", "DeathSFX", "Health1", "Health2", "HealthShaker", "SpriteShaker", "BulletSpawn")]
 collision_mask = 58
 collision_priority = 10.0
 motion_mode = 1
 platform_on_leave = 2
 safe_margin = 8.0
 script = ExtResource("1_uq16e")
+Camera = NodePath("ShakeableCamera2D")
 StarterBullet = ExtResource("2_hdhtq")
 DeathEffect = ExtResource("3_ma5cx")
 FramesPerHealthRegeneration = 60
@@ -63,7 +66,6 @@ Health2 = NodePath("FloatingHUD/ShakeContainer/Bottom")
 HealthShaker = NodePath("FloatingHUD/ShakeContainer/Shaker")
 SpriteShaker = NodePath("Sprite2D/Shaker")
 BulletSpawn = NodePath("BulletSpawn")
-Camera = NodePath("Camera2D")
 MaxHP = 100
 HP = 100
 Speed = 350
@@ -96,8 +98,8 @@ shape = SubResource("CircleShape2D_l8pfc")
 [node name="BulletSpawn" type="Marker2D" parent="."]
 position = Vector2(34, 0)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position_smoothing_speed = 15.0
+[node name="ShakeableCamera2D" parent="." instance=ExtResource("8_dt6eg")]
+script = ExtResource("9_2c7x7")
 
 [node name="FloatingHUD" type="Control" parent="."]
 top_level = true

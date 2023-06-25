@@ -1,6 +1,7 @@
 using Godot;
 
 public partial class Player : Entity {
+	[Export] public ShakeableCamera2D Camera;
 	[Export] PackedScene StarterBullet;
 	[Export] PackedScene DeathEffect;
 	[Export] ushort FramesPerHealthRegeneration;
@@ -12,9 +13,8 @@ public partial class Player : Entity {
 	[Export] Shaker HealthShaker;
 	[Export] Shaker SpriteShaker;
 	[Export] Marker2D BulletSpawn;
-	[Export] Camera2D Camera;
 	Vector2 HalfScreenSize;
-	Vector2 CameraOffset;
+	Vector2 CameraPan;
 	KinematicCollision2D Collision;
 	Node Collider;
 	PackedScene CurrentBullet;
@@ -39,9 +39,9 @@ public partial class Player : Entity {
 	public override void _Process(double delta) {
 		Health2.Value = Mathf.Lerp(Health2.Value, HP, 6.0f*delta);
 		if (!Global.IsPlayerAlive) return;
-		CameraOffset = (GetViewport().GetMousePosition()-HalfScreenSize).Normalized()*60;
-		Rotation = Mathf.Atan2(CameraOffset.Y, CameraOffset.X);
-		Camera.Offset = Camera.Offset.Lerp(CameraOffset, (float)(7.2f*delta));
+		CameraPan = (GetViewport().GetMousePosition()-HalfScreenSize).Normalized()*60;
+		Rotation = Mathf.Atan2(CameraPan.Y, CameraPan.X);
+		Camera.Pan = Camera.Offset.Lerp(CameraPan, (float)(7.2f*delta));
 	}
 
 	public override void _PhysicsProcess(double delta) {
@@ -79,6 +79,7 @@ public partial class Player : Entity {
 		HitSFX.Play();
 		HealthShaker.Start();
 		SpriteShaker.Start();
+		Camera.Shake();
 		Health1.Value = HP;
 		Global.HealthScale = HP/(float)MaxHP;
 	}
@@ -94,6 +95,7 @@ public partial class Player : Entity {
 		Effect effect = DeathEffect.Instantiate<Effect>();
 		effect.GlobalPosition = GlobalPosition;
 		AddSibling(effect);
+		Camera.Shake(2);
 		EmitSignal(SignalName.OnDeath);
 	}
 }

@@ -25,6 +25,10 @@ public partial class Global : Node {
         HUD.Shockwaves.AddChild(shockwave);
     }
 
+    public static void ShakeCamera(int level) {
+        Player.Camera.Shake(level);
+    }
+
     public static void PlaySoundAt(Vector2 globalPosition, AudioStreamOggVorbis sound) {
         AudioStreamPlayer2D tempAudioPlayer = new AudioStreamPlayer2D();
         tempAudioPlayer.GlobalPosition = globalPosition;
