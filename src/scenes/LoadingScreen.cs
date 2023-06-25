@@ -14,6 +14,8 @@ public partial class LoadingScreen : Label {
 	private bool IsLoading;
 
 	public override void _Ready() {
+		ConfigManager.Load();
+		SaveManager.Load();
 		StartLoadingContent();
 	}
 

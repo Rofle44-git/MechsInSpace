@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ct54dpgb2acv8"]
 
-[ext_resource type="Theme" uid="uid://dywyby257ioji" path="res://assets/main_menu.tres" id="1_8kaw5"]
+[ext_resource type="Theme" uid="uid://dywyby257ioji" path="res://assets/theme.tres" id="1_8kaw5"]
 [ext_resource type="Script" path="res://src/scenes/MainMenu.cs" id="2_15vau"]
 [ext_resource type="Script" path="res://src/widgets/AnimatedButton.cs" id="3_sv01t"]
 [ext_resource type="Script" path="res://src/widgets/joke_label.gd" id="4_x8f4l"]
@@ -63,6 +63,7 @@ size_flags_horizontal = 0
 [node name="Start" type="Button" parent="VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_type_variation = &"MainMenuButton"
 theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 24
 text = "Start"
@@ -72,6 +73,7 @@ script = ExtResource("3_sv01t")
 [node name="Settings" type="Button" parent="VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_type_variation = &"MainMenuButton"
 theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 24
 text = "Settings"
@@ -81,6 +83,7 @@ script = ExtResource("3_sv01t")
 [node name="About" type="Button" parent="VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_type_variation = &"MainMenuButton"
 theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 24
 text = "About"

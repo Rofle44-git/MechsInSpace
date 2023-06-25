@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c2frs80t328kr"]
+[gd_scene load_steps=25 format=3 uid="uid://c2frs80t328kr"]
 
 [ext_resource type="Script" path="res://src/scenes/Game.cs" id="1_6p11m"]
 [ext_resource type="PackedScene" uid="uid://dsndskaue8jlv" path="res://src/scenes/bg.tscn" id="1_py16m"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cyn3pg7dewdca" path="res://content/enemies/base.motherfucker.tscn" id="8_dd60n"]
 [ext_resource type="PackedScene" uid="uid://qobonixwlc8s" path="res://src/widgets/animated_wave_display.tscn" id="9_mtug5"]
 [ext_resource type="Texture2D" uid="uid://u6m3dm1cqk6m" path="res://assets-raw/sprites/vignette.png" id="9_n14uw"]
+[ext_resource type="Script" path="res://src/scenes/PauseMenu.cs" id="15_gptxj"]
 
 [sub_resource type="Resource" id="Resource_2qcle"]
 script = ExtResource("6_dkp1w")
@@ -92,32 +93,40 @@ random_volume_offset_db = 4.0
 stream_0/stream = ExtResource("7_he66t")
 stream_0/weight = 1.0
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("Player", "HUD", "BGMus", "Vignette")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("Player", "HUD", "BGMus", "PauseMenu", "Vignette")]
+process_mode = 3
 script = ExtResource("1_6p11m")
 Player = NodePath("Player")
 HUD = NodePath("CanvasLayer/HUD")
 BGMus = NodePath("BGMus")
+PauseMenu = NodePath("Pause/PauseMenu")
 Vignette = NodePath("CanvasLayer/Vignette")
 
 [node name="BGMus" type="AudioStreamPlayer" parent="."]
+process_mode = 1
 stream = ExtResource("2_21who")
 volume_db = -4.0
 autoplay = true
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("1_py16m")]
+process_mode = 1
 
 [node name="WaveController" parent="." node_paths=PackedStringArray("Enemies") instance=ExtResource("4_weh6i")]
+process_mode = 1
 Enemies = NodePath("../Enemies")
 WaveEntries = [SubResource("Resource_2qcle"), SubResource("Resource_uelda"), SubResource("Resource_0nbp3"), SubResource("Resource_8b7mw")]
 MinRange = 600.0
 MaxRange = 1800.0
 
 [node name="Player" parent="." instance=ExtResource("4_83g6l")]
+process_mode = 1
 FramesPerHealthRegeneration = 30
 
 [node name="Enemies" type="Node2D" parent="."]
+process_mode = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 1
 
 [node name="HUD" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("CoinsContainer", "Shockwaves", "AnimPlayer", "CoinCountLabel", "CoinSFX")]
 layout_mode = 3
@@ -187,6 +196,61 @@ self_modulate = Color(1, 1, 1, 0.6)
 texture = ExtResource("9_n14uw")
 centered = false
 
+[node name="Pause" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" type="Control" parent="Pause"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("15_gptxj")
+
+[node name="CenterContainer" type="CenterContainer" parent="Pause/PauseMenu"]
+layout_mode = 2
+offset_left = 60.0
+offset_top = 60.0
+offset_right = 940.0
+offset_bottom = 940.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Pause/PauseMenu/CenterContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Pause/PauseMenu/CenterContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause/PauseMenu/CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pause/PauseMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause/PauseMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="Continue" type="Button" parent="Pause/PauseMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Continue"
+
+[node name="ToMainMenu" type="Button" parent="Pause/PauseMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="Quit" type="Button" parent="Pause/PauseMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit Game"
+
 [connection signal="WaveStarting" from="WaveController" to="CanvasLayer/HUD/AnimatedWaveDisplay" method="DisplayNextWave"]
+[connection signal="pressed" from="Pause/PauseMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/Continue" to="Pause/PauseMenu" method="Continue"]
+[connection signal="pressed" from="Pause/PauseMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ToMainMenu" to="Pause/PauseMenu" method="ToMainMenu"]
+[connection signal="pressed" from="Pause/PauseMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/Quit" to="Pause/PauseMenu" method="Quit"]
 
 [editable path="CanvasLayer/HUD/AnimatedWaveDisplay"]

@@ -3,14 +3,22 @@ using Godot;
 public partial class Game : Node2D {
 	[Export] public Player Player;
 	[Export] public HUD HUD;
-	[Export] private AudioStreamPlayer BGMus;
-	[Export] private Node2D Vignette;
+	[Export] AudioStreamPlayer BGMus;
+	[Export] PauseMenu PauseMenu;
+	[Export] Node2D Vignette;
 	float MusicPitchShift = 0;
 
 	public override void _Ready() {
 		Global.Game = this;
 		Global.Player = Player;
 		Global.HUD = HUD;
+		HUD.UpdateCoinCounter();
+	}
+
+	public override void _UnhandledInput(InputEvent @event) {
+		if (@event.IsActionPressed("pause") && Global.IsPlayerAlive) {
+			PauseMenu.Toggle();
+		}
 	}
 
 	public override void _PhysicsProcess(double delta) {
