@@ -16,7 +16,7 @@ public partial class WaveController : Node {
 	bool Queueing = false;
 
 	public override void _PhysicsProcess(double delta) {
-		if (!Enabled || !IsInstanceValid(Global.Player)) {return;}
+		if (!Enabled || !Global.IsPlayerAlive) {return;}
 		// If queue is still full
 		if (SpawnQueue.Count > 0) {
 			QueueIndex = (int)GD.RandRange(0, SpawnQueue.Count-1);

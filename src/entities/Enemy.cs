@@ -12,7 +12,7 @@ public partial class Enemy : Entity {
 	}
 
 	public override void _PhysicsProcess(double delta) {
-		if (!IsInstanceValid(Player)) return;
+		if (!Global.IsPlayerAlive) return;
 			DeltaPos = Player.Position-Position;
 			Rotation = Mathf.Atan2(DeltaPos.Y, DeltaPos.X);
 			Velocity = Speed * new Vector2(1.0f, 0.0f).Rotated(Rotation);

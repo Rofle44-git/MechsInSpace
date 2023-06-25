@@ -9,7 +9,7 @@ public partial class Global : Node {
     public static int Coins = 0;
     public static float HealthScale = 1.0f;
     public static float Tensity = 0.0f;
-    public static bool PlayerAlive = true;
+    public static bool IsPlayerAlive = true;
 
     public static void SpawnCoin(int amount, Vector2 position) {
 		for (int i = 0; i < amount; i++) {

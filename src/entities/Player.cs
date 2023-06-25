@@ -89,7 +89,7 @@ public partial class Player : Entity {
 	}
 
 	public override void _OnDeath() {
-		Global.PlayerAlive = false;
+		Global.IsPlayerAlive = false;
 		base._Die();
 	}
 }

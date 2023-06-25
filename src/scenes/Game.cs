@@ -15,7 +15,7 @@ public partial class Game : Node2D {
 
     public override void _PhysicsProcess(double delta) {
         Global.Tensity = (float)Mathf.Lerp(Global.Tensity, (1f-Global.HealthScale), 0.01);
-		if (Global.PlayerAlive) {
+		if (Global.IsPlayerAlive) {
 			BGMus.PitchScale = 0.2f*Global.Tensity+1f;
 			Vignette.SelfModulate = new Color(1f, 1f, 1f, 0.8f*Global.Tensity);
 			return;
