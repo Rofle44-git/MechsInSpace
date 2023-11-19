@@ -30,11 +30,12 @@ public partial class Global : Node {
 	}
 
 	public static void PlaySoundAt(Vector2 globalPosition, AudioStreamOggVorbis sound) {
-		AudioStreamPlayer2D tempAudioPlayer = new AudioStreamPlayer2D();
-		tempAudioPlayer.GlobalPosition = globalPosition;
-		tempAudioPlayer.Stream = sound;
-		tempAudioPlayer.Autoplay = true;
-		Game.AddChild(tempAudioPlayer);
+        AudioStreamPlayer2D tempAudioPlayer = new AudioStreamPlayer2D {
+            GlobalPosition = globalPosition,
+            Stream = sound,
+            Autoplay = true
+        };
+        Game.AddChild(tempAudioPlayer);
 		tempAudioPlayer.Finished += () => tempAudioPlayer.QueueFree();
 	}
 
