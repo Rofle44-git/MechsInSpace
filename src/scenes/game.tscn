@@ -6,12 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://cxcvambxx70kw" path="res://src/entities/player.tscn" id="4_83g6l"]
 [ext_resource type="PackedScene" uid="uid://da8jaielixcnm" path="res://content/enemies/base.rude_dude.tscn" id="4_ei7yb"]
 [ext_resource type="PackedScene" uid="uid://da8x8xnwpja5d" path="res://src/nodes/wave_controller.tscn" id="4_weh6i"]
-[ext_resource type="PackedScene" path="res://content/enemies/base.meanie.tscn" id="5_grved"]
+[ext_resource type="PackedScene" uid="uid://dkdp46og7gogo" path="res://content/enemies/base.meanie.tscn" id="5_grved"]
 [ext_resource type="Script" path="res://src/resources/WaveEntry.cs" id="6_dkp1w"]
 [ext_resource type="Script" path="res://src/scenes/HUD.cs" id="6_ncnqm"]
 [ext_resource type="AudioStream" uid="uid://pe7f3bq8aqel" path="res://assets-raw/sounds/coin0.ogg" id="7_he66t"]
-[ext_resource type="PackedScene" path="res://content/enemies/base.asshole.tscn" id="7_yhu4x"]
-[ext_resource type="PackedScene" path="res://content/enemies/base.motherfucker.tscn" id="8_dd60n"]
+[ext_resource type="PackedScene" uid="uid://driydphlppvxf" path="res://content/enemies/base.asshole.tscn" id="7_yhu4x"]
+[ext_resource type="PackedScene" uid="uid://cyn3pg7dewdca" path="res://content/enemies/base.motherfucker.tscn" id="8_dd60n"]
 [ext_resource type="PackedScene" uid="uid://qobonixwlc8s" path="res://src/widgets/animated_wave_display.tscn" id="9_mtug5"]
 [ext_resource type="Texture2D" uid="uid://u6m3dm1cqk6m" path="res://assets-raw/sprites/vignette.png" id="9_n14uw"]
 [ext_resource type="Script" path="res://src/scenes/PauseMenu.cs" id="15_gptxj"]
@@ -87,9 +87,9 @@ _data = {
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bk4xb"]
-streams_count = 1
 random_pitch = 1.2
 random_volume_offset_db = 4.0
+streams_count = 1
 stream_0/stream = ExtResource("7_he66t")
 stream_0/weight = 1.0
 
