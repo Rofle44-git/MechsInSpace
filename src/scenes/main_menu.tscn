@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ct54dpgb2acv8"]
 
-[ext_resource type="Theme" uid="uid://dywyby257ioji" path="res://assets/theme.tres" id="1_8kaw5"]
+[ext_resource type="Theme" uid="uid://dywyby257ioji" path="res://assets/theme/theme.tres" id="1_8kaw5"]
 [ext_resource type="Script" path="res://src/scenes/MainMenu.cs" id="2_15vau"]
 [ext_resource type="Script" path="res://src/widgets/AnimatedButton.cs" id="3_sv01t"]
 [ext_resource type="Script" path="res://src/widgets/joke_label.gd" id="4_x8f4l"]
