@@ -47,7 +47,7 @@ enabled=PackedStringArray()
 
 [gui]
 
-theme/custom="res://assets/theme.tres"
+theme/custom="res://assets/theme/theme.tres"
 
 [importer_defaults]
 
