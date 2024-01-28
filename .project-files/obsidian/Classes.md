@@ -1,6 +1,5 @@
 [[BulletClass]]
 [[EntityClass]]
-[[EffectClass]]
 [[ComponentClass]]
 [[ControllerConfigResource]]
 [[ShopEntryResource]]
