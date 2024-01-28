@@ -1,5 +1,6 @@
 # Unnecessary/huge files
 .build/
+addons/script-ide/
 
 # Private project files
 .project-files/obsidian/.obsidian/
