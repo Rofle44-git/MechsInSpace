@@ -1,6 +1,9 @@
 # TODO
 
-Disclaimer: Despite it being a TODO list, nothing is guaranteed to be added and i'm just writing down ideas.
+## Disclaimer
+This is just a little personal checklist for me, WilliamTheMoth. __NOTHING__ listed here is guaranteed to be done.
+
+In other words: __Don't__ expect me to *actually* do ***anything*** listed here.
 
 ## Game
 - Weapon selector
