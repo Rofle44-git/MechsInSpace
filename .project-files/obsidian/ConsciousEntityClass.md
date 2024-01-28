@@ -1,3 +1,3 @@
-[[DroneClass]]
+[[SputnikClass]]
 [[TurretClass]]
 #class

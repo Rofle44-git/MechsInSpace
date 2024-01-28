@@ -1,3 +1,3 @@
 [[drone]]
-[[turret]]
+[[sputnik]]
 #2d

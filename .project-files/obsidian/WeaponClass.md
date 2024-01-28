@@ -1,0 +1,4 @@
+[[MeleeWeaponClass]]
+[[PhysicalBulletWeaponClass]]
+[[RayWeaponClass]]
+#class
