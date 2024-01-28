@@ -1,13 +1,15 @@
-.project-files/
-.godot/
+# Unnecessary/huge files
 .build/
+
+# Private project files
+.project-files/obsidian/.obsidian/
+.project-files/obsidian/.trash/
+
+# IDE stuff
 .Ideas
 .vs/
-Properties/
-ShootEmUp.csproj.user
-ShootEmUp.csproj.old.1
-ShootEmUp.csproj.old
 ShootEmUp.csproj
 ShootEmUp.sln
-ShootEmUp.csproj.old.2
-ShootEmUp.csproj.old.2
+
+# Cache/other
+.godot/
