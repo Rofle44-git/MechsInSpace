@@ -2,9 +2,8 @@
 [[EntityClass]]
 [[EffectClass]]
 [[ComponentClass]]
-[[ControllerConfig]]
+[[ControllerConfigResource]]
 [[ShopEntryResource]]
 [[LevelGeneratorClass]]
-[[ObjectControllerClass]]
 [[WeaponClass]]
 #class

@@ -1,4 +1,4 @@
-[[ControllerInterfaceClass]]
 [[GraphAiClass]]
+[[ObjectControllerClass]]
 [[PlayerInputClass]]
 #class 
