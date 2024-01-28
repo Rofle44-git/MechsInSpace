@@ -6,4 +6,5 @@
 [[SavesManagerClass]]
 [[ShopEntryResource]]
 [[WaveConfigResource]]
+[[WeaponClass]]
 #class

@@ -6,3 +6,4 @@
 [[styles]]
 [[textures]]
 [[tilesets]]
+[[weapons]]
