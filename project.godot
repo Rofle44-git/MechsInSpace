@@ -16,13 +16,13 @@ ResourceScriptDirectories=["res://src/static"]
 
 [application]
 
-config/name="ShootEmUp"
+config/name="MechsInSpace"
 config/name_localized={
 "de_DE": "KNALL SIE AB"
 }
-config/tags=PackedStringArray("game", "c#")
+config/tags=PackedStringArray("game", "gd_script", "open_source")
 run/main_scene="res://src/scenes/loading_screen.tscn"
-config/features=PackedStringArray("4.2", "C#", "Forward Plus")
+config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [debug]
@@ -34,7 +34,7 @@ gdscript/warnings/unsafe_property_access=1
 window/size/viewport_width=1000
 window/size/viewport_height=1000
 window/size/resizable=false
-mouse_cursor/custom_image="res://assets-raw/sprites/aim.png"
+mouse_cursor/custom_image="res://assets/sprites/aim.png"
 mouse_cursor/custom_image_hotspot=Vector2(24, 24)
 
 [dotnet]
@@ -47,7 +47,7 @@ enabled=PackedStringArray()
 
 [gui]
 
-theme/custom="res://assets/theme/theme.tres"
+theme/custom="res://assets/styles/theme.tres"
 
 [importer_defaults]
 
