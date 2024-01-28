@@ -4,7 +4,6 @@
 [[ComponentClass]]
 [[ControllerConfig]]
 [[ShopEntryResource]]
-[[LevelGeneratorConfigResource]]
 [[LevelGeneratorClass]]
 [[ObjectControllerClass]]
 [[WeaponClass]]
