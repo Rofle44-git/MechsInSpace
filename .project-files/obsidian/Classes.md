@@ -3,8 +3,11 @@
 [[EffectClass]]
 [[GlobalClass]]
 [[ComponentClass]]
+[[ControllerConfig]]
 [[SavesManagerClass]]
 [[ShopEntryResource]]
-[[WaveConfigResource]]
+[[LevelGeneratorConfigResource]]
+[[LevelGeneratorClass]]
+[[ObjectControllerClass]]
 [[WeaponClass]]
 #class

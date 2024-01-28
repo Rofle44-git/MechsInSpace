@@ -1,3 +1,4 @@
+[[CrawlerClass]]
 [[SputnikClass]]
 [[TurretClass]]
 #class
