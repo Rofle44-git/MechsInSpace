@@ -1,0 +1,3 @@
+- Flat
+- Vectorized
+- Minimal lighting

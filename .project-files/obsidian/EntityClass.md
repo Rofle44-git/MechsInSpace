@@ -1,0 +1,3 @@
+[[ConsciousEntityClass]]
+[[PropClass]]
+#class

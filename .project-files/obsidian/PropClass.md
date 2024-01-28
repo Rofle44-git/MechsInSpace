@@ -1,0 +1,3 @@
+[[CollectableClass]]
+[[ExplosivePropClass]]
+#class

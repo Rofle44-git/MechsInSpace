@@ -1,0 +1,4 @@
+[[node]]
+[[resource]]
+[[scene]]
+[[singleton]]

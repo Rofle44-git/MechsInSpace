@@ -1,0 +1,8 @@
+[[fonts]]
+[[mus]]
+[[shaders]]
+[[sfx]]
+[[sprites]]
+[[styles]]
+[[textures]]
+[[tilesets]]

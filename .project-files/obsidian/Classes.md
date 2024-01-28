@@ -1,0 +1,9 @@
+[[BulletClass]]
+[[EntityClass]]
+[[EffectClass]]
+[[GlobalClass]]
+[[ComponentClass]]
+[[SavesManagerClass]]
+[[ShopEntryResource]]
+[[WaveConfigResource]]
+#class
