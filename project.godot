@@ -18,3 +18,7 @@ config/name="MechsInSpace"
 config/tags=PackedStringArray("game", "gd_script", "open_source")
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/script-ide/plugin.cfg")
