@@ -1,4 +1,3 @@
-[[CrawlerClass]]
-[[SputnikClass]]
-[[TurretClass]]
+[[StationaryEntity]]
+[[KinematicEntity]]
 #class

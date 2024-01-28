@@ -1,3 +1,4 @@
 [[ConsciousEntityClass]]
+[[CollectableClass]]
 [[PropClass]]
 #class

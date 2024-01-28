@@ -1,3 +1,3 @@
-[[drone]]
-[[sputnik]]
+[[stationary]]
+[[kinematic]]
 #2d
