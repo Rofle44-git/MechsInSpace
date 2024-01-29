@@ -1,1 +1,4 @@
+[[PhysicalBulletClass]]
+[[InstantaneousBulletClass]]
+[[RayBulletClass]]
 #class
