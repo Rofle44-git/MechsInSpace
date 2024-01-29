@@ -1,3 +1,3 @@
-- Semi-realiatic
-- Simple
+- Electric
+- Synth-y
 #audio 

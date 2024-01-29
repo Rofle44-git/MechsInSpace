@@ -1,3 +1,7 @@
 - Flat
 - Vectorized
-- Minimal lighting
+- lighting using normal maps
+- Sci-fi
+- Blooooooom
+- Neoooooon
+- Edgy (no not like that, more like the opposite of smooth)

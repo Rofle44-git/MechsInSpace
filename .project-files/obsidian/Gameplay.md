@@ -1,1 +1,1 @@
-An incremental shoot em up that's customizable and moddable. The goal is to fight off waves of enemies and improve your equipment and player.
+An incremental shoot em up about taking over planets. The goal is to drive all species to extinction while continually improving your equipment.

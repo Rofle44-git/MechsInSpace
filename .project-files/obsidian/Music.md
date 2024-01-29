@@ -1,4 +1,6 @@
 - High BPM
-- Heavy use of drums
+- Many synths
+- Much reverb yes
+- Dramatic
 - Adaptive
 #audio 
