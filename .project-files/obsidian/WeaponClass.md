@@ -1,4 +1,3 @@
-[[MeleeWeaponClass]]
 [[PhysicalBulletWeaponClass]]
 [[RayWeaponClass]]
 #class
