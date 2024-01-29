@@ -19,6 +19,10 @@ config/tags=PackedStringArray("game", "gd_script", "open_source")
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+TeamManager="*res://src/singleton/team_manager.gd"
+
 [debug]
 
 gdscript/warnings/unassigned_variable_op_assign=2
