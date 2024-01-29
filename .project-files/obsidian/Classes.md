@@ -5,4 +5,5 @@
 [[ShopEntryResource]]
 [[LevelGeneratorClass]]
 [[WeaponClass]]
+[[WeaponContainerClass]]
 #class
