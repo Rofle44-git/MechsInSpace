@@ -1,3 +1,3 @@
-[[StationaryEntity]]
-[[KinematicEntity]]
+[[StationaryEntityClass]]
+[[KinematicEntityClass]]
 #class

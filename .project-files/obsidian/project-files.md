@@ -1,2 +1,3 @@
 [[inkscape]]
 [[obsidian]]
+[[lmms]]
