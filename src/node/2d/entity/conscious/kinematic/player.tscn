@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwkak8l21qdfi"]
+
+[ext_resource type="PackedScene" uid="uid://ch7hpj0nswv4w" path="res://src/node/2d/entity/conscious/kinematic/sputnik.tscn" id="1_dipol"]
+[ext_resource type="Script" path="res://src/node/component/object_interface/kinematic_entity_interface.gd" id="2_uub65"]
+[ext_resource type="Script" path="res://src/node/component/player_input.gd" id="3_ldgbd"]
+
+[node name="Player" instance=ExtResource("1_dipol")]
+
+[node name="KinematicEntityInterface" type="Node" parent="." index="5" node_paths=PackedStringArray("target")]
+script = ExtResource("2_uub65")
+target = NodePath("..")
+
+[node name="PlayerInput" type="Node" parent="." index="6"]
+script = ExtResource("3_ldgbd")
+
+[connection signal="left_axis" from="PlayerInput" to="KinematicEntityInterface" method="move"]

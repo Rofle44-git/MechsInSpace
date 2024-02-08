@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://ch7hpj0nswv4w"]
+
+[ext_resource type="Script" path="res://src/node/2d/entity/conscious/kinematic/sputnik.gd" id="1_5pyr2"]
+[ext_resource type="Texture2D" uid="uid://dyqax3w4g3odl" path="res://assets/sprites/vfx/awesome-placeholder.png" id="2_u7ngp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_addfk"]
+radius = 64.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_jisdj"]
+radius = 64.0
+height = 128.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mbqu6"]
+radius = 8.0
+height = 128.0
+radial_segments = 4
+
+[node name="Sputnik" type="RigidBody2D"]
+mass = 83.0
+script = ExtResource("1_5pyr2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_addfk")
+
+[node name="Body" type="MeshInstance2D" parent="."]
+mesh = SubResource("SphereMesh_jisdj")
+texture = ExtResource("2_u7ngp")
+
+[node name="Leg1" type="MeshInstance2D" parent="."]
+position = Vector2(-48, -64)
+rotation = 1.8326
+mesh = SubResource("CapsuleMesh_mbqu6")
+
+[node name="Leg2" type="MeshInstance2D" parent="."]
+position = Vector2(-80, 0)
+rotation = 1.5708
+mesh = SubResource("CapsuleMesh_mbqu6")
+
+[node name="Leg3" type="MeshInstance2D" parent="."]
+position = Vector2(-48, 64)
+rotation = 1.309
+mesh = SubResource("CapsuleMesh_mbqu6")
