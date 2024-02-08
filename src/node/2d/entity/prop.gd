@@ -1,6 +1,6 @@
 class_name Prop
 extends Entity
-## Class for reactive objects.
+## Class for interactable objects.
 ##
 ## A prop is an object that isn't actually sentient, but still reacts to
 ## events/interactions, or has complex scripted behavior. If an object is

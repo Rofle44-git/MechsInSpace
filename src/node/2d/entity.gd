@@ -1,6 +1,6 @@
 class_name Entity
 extends RigidBody2D
-## Base class for Entities.
+## Abstract class for entities.
 ##
 ## This serves as a base class for all objects capable of performing at least
 ## one of the following actions:
