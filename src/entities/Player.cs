@@ -2,9 +2,10 @@ using Godot;
 
 public partial class Player : Entity {
 	[Export] public ShakeableCamera2D Camera;
-	[Export] PackedScene StarterBullet;
+	[Export] PackedScene CurrentBullet;
 	[Export] PackedScene DeathEffect;
 	[Export] ushort FramesPerHealthRegeneration;
+	[ExportSubgroup("Dependencies")]
 	[Export] AudioStreamPlayer2D ShotSFX;
 	[Export] AudioStreamPlayer2D HitSFX;
 	[Export] AudioStreamPlayer2D DeathSFX;
@@ -17,23 +18,18 @@ public partial class Player : Entity {
 	Vector2 CameraPan;
 	KinematicCollision2D Collision;
 	Node Collider;
-	PackedScene CurrentBullet;
 
 	public override void _Ready() {
 		Health1.Value = Health2.Value = HP;
 		Health1.MaxValue = Health2.MaxValue = MaxHP;
 		HalfScreenSize = GetViewportRect().Size/2;
-		SetBullet(StarterBullet);
 	}
 
 	public override void _UnhandledInput(InputEvent @event) {
 		if (!Global.IsPlayerAlive) return;
-		if (!Input.IsActionJustPressed("shoot")) return;
+		if (!Input.IsActionJustPressed((StringName)"shoot")) return;
 		ShotSFX.Play();
-		Bullet BulletInstance = CurrentBullet.Instantiate<Bullet>();
-		BulletInstance.GlobalPosition = BulletSpawn.GlobalPosition;
-		BulletInstance.GlobalRotation = BulletSpawn.GlobalRotation;
-		AddSibling(BulletInstance);
+		AddSibling(Bullet.Spawn(CurrentBullet, GlobalPosition, GlobalRotation));
 	}
 
 	public override void _Process(double delta) {
@@ -72,7 +68,7 @@ public partial class Player : Entity {
 
 	public override void _OnHeal() {
 		Health1.Value = HP;
-		Global.HealthScale = HP/(float)MaxHP;
+		Global.HealthScale = HP/MaxHP;
 	}
 
 	public override void _OnHarm() {
@@ -92,9 +88,7 @@ public partial class Player : Entity {
 		Global.IsPlayerAlive = false;
 		DeathSFX.Play();
 		Global.SpawnShockwave(GetGlobalTransformWithCanvas().Origin);
-		Effect effect = DeathEffect.Instantiate<Effect>();
-		effect.GlobalPosition = GlobalPosition;
-		AddSibling(effect);
+		AddSibling(Effect.Spawn(DeathEffect, GlobalPosition));
 		Camera.Shake(2);
 		EmitSignal(SignalName.OnDeath);
 	}

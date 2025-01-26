@@ -2,9 +2,9 @@ using Godot;
 
 public partial class Entity : CharacterBody2D {
 	[Signal] public delegate void OnDeathEventHandler();
-	[Export(PropertyHint.Range, "0,32768,1")] public int MaxHP;
-	[Export(PropertyHint.Range, "0,32768,1")] public int HP;
-	[Export(PropertyHint.Range, "0,32768,1")] public int Speed;
+	[Export(PropertyHint.Range, "0,32768,1")] public float MaxHP;
+	[Export(PropertyHint.Range, "0,32768,1")] public float HP;
+	[Export(PropertyHint.Range, "0,32768,1")] public float Speed;
 
 	public void Heal(int amount) {
 		if (HP>=MaxHP) {HP = MaxHP; _OnMaxHeal(); return;}
