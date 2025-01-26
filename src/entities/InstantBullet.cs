@@ -3,7 +3,7 @@ using Godot;
 public partial class InstantBullet : Bullet {
 	[Export] RayCast2D Ray;
 	[Export] Line2D Line;
-	 
+	
 	public override void _Ready() {
 		base._Ready();
 

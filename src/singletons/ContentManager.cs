@@ -1,7 +1,8 @@
 using Godot;
 
-public partial class ContentManager : Node {
-	public static Godot.Collections.Dictionary Content = new Godot.Collections.Dictionary();
+public partial class ContentManager : Node
+{
+	public static Godot.Collections.Dictionary Content = [];
 	public static PackedScene MainMenu;
 	public static PackedScene GameScene;
 	public static PackedScene SettingsScene;

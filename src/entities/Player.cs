@@ -1,6 +1,7 @@
 using Godot;
 
-public partial class Player : Entity {
+public partial class Player : Entity
+{
 	[Export] public ShakeableCamera2D Camera;
 	[Export] PackedScene CurrentBullet;
 	[Export] PackedScene DeathEffect;
@@ -19,77 +20,83 @@ public partial class Player : Entity {
 	KinematicCollision2D Collision;
 	Node Collider;
 
-	public override void _Ready() {
+	public override void _Ready()
+	{
 		Health1.Value = Health2.Value = HP;
 		Health1.MaxValue = Health2.MaxValue = MaxHP;
-		HalfScreenSize = GetViewportRect().Size/2;
+		HalfScreenSize = GetViewportRect().Size / 2;
 	}
 
-	public override void _UnhandledInput(InputEvent @event) {
+	public override void _UnhandledInput(InputEvent @event)
+	{
 		if (!Global.IsPlayerAlive) return;
 		if (!Input.IsActionJustPressed((StringName)"shoot")) return;
 		ShotSFX.Play();
 		AddSibling(Bullet.Spawn(CurrentBullet, GlobalPosition, GlobalRotation));
 	}
 
-	public override void _Process(double delta) {
-		Health2.Value = Mathf.Lerp(Health2.Value, HP, 6.0f*delta);
+	public override void _Process(double delta)
+	{
+		Health2.Value = Mathf.Lerp(Health2.Value, HP, 6.0f * delta);
 		if (!Global.IsPlayerAlive) return;
-		CameraPan = (GetViewport().GetMousePosition()-HalfScreenSize).Normalized()*60;
+		CameraPan = (GetViewport().GetMousePosition() - HalfScreenSize).Normalized() * 60;
 		Rotation = Mathf.Atan2(CameraPan.Y, CameraPan.X);
-		Camera.Pan = Camera.Offset.Lerp(CameraPan, (float)(7.2f*delta));
+		Camera.Pan = Camera.Offset.Lerp(CameraPan, (float)(7.2f * delta));
 	}
 
-	public override void _PhysicsProcess(double delta) {
+	public override void _PhysicsProcess(double delta)
+	{
 		if (!Global.IsPlayerAlive) return;
-		Camera.Zoom = Vector2.One+Vector2.One*Global.Tensity*0.5f;
+		Camera.Zoom = Vector2.One + Vector2.One * Global.Tensity * 0.5f;
 
-		Velocity = Velocity.Lerp(Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down") * Speed, (float)(6.0f*delta));
+		Velocity = Velocity.Lerp(Input.GetVector((StringName)"ui_left", (StringName)"ui_right", (StringName)"ui_up", (StringName)"ui_down") * Speed, (float)(6.0f * delta));
 		MoveAndSlide();
 
 		if (Engine.GetPhysicsFrames() % FramesPerHealthRegeneration == 0) Heal(1);
-	
-		for (int i = 0; i < GetSlideCollisionCount(); i++) {
+
+		for (int i = 0; i < GetSlideCollisionCount(); i++)
+		{
 			Collision = GetSlideCollision(i);
-			if (Collision == null) {continue;}
+			if (Collision == null) { continue; }
 			Collider = (Node)Collision.GetCollider();
-			
-			if (Collider is Enemy) {
-				Harm(((Enemy)Collider).Damage); Collider.QueueFree();
+
+			if (Collider is Enemy enemy)
+			{
+				Harm(enemy.Damage); Collider.QueueFree();
 			}
 		}
 	}
 
-	void SetBullet(PackedScene newBullet) {
-		Bullet bulletInstance = newBullet.Instantiate<Bullet>();
-		CurrentBullet = newBullet;
-		ShotSFX.Stream = bulletInstance.ShotSFXs;
-	}
-
-	public override void _OnHeal() {
+	public override void OnHeal()
+	{
+		base.OnHeal();
 		Health1.Value = HP;
-		Global.HealthScale = HP/MaxHP;
+		Global.HealthScale = HP / MaxHP;
 	}
 
-	public override void _OnHarm() {
+	public override void OnHarm()
+	{
+		base.OnHarm();
 		HitSFX.Play();
 		HealthShaker.Start();
 		SpriteShaker.Start();
 		Camera.Shake();
 		Health1.Value = HP;
-		Global.HealthScale = HP/(float)MaxHP;
+		Global.HealthScale = HP / MaxHP;
 	}
 
-	public override void _OnDeath() {
+	public override void OnDeath()
+	{
+		base.OnDeath();
 		HealthShaker.Start();
 		SpriteShaker.Start();
 		Health1.Value = HP;
-		Global.HealthScale = HP/(float)MaxHP;
+		Global.HealthScale = HP / MaxHP;
 		Global.IsPlayerAlive = false;
 		DeathSFX.Play();
 		Global.SpawnShockwave(GetGlobalTransformWithCanvas().Origin);
 		AddSibling(Effect.Spawn(DeathEffect, GlobalPosition));
 		Camera.Shake(2);
-		EmitSignal(SignalName.OnDeath);
+		EmitSignal(SignalName.Death);
 	}
 }

@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://ct54dpgb2acv8"]
 
 [ext_resource type="Theme" uid="uid://dywyby257ioji" path="res://assets/theme/theme.tres" id="1_8kaw5"]
-[ext_resource type="Script" path="res://src/scenes/MainMenu.cs" id="2_15vau"]
-[ext_resource type="Script" path="res://src/widgets/AnimatedButton.cs" id="3_sv01t"]
-[ext_resource type="Script" path="res://src/widgets/joke_label.gd" id="4_x8f4l"]
+[ext_resource type="Script" uid="uid://veqkxtbr65ox" path="res://src/scenes/MainMenu.cs" id="2_15vau"]
+[ext_resource type="Script" uid="uid://b4kke1qluqixe" path="res://src/widgets/AnimatedButton.cs" id="3_sv01t"]
+[ext_resource type="Script" uid="uid://cs754stmp2e4p" path="res://src/widgets/joke_label.gd" id="4_x8f4l"]
 [ext_resource type="PackedScene" uid="uid://dsndskaue8jlv" path="res://src/scenes/bg.tscn" id="5_4inei"]
 
 [node name="MainMenu" type="Control"]
@@ -90,6 +90,6 @@ text = "About"
 alignment = 2
 script = ExtResource("3_sv01t")
 
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/Start" to="." method="_OnStartPressed"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/Settings" to="." method="_OnSettingsPressed"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/About" to="." method="_OnAboutPressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/Start" to="." method="OnStartPressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/Settings" to="." method="OnSettingsPressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/About" to="." method="OnAboutPressed"]

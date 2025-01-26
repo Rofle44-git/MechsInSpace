@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dsndskaue8jlv" path="res://src/scenes/bg.tscn" id="1_5roms"]
 [ext_resource type="PackedScene" uid="uid://21qeel3mjn7i" path="res://src/widgets/back_to_main_menu_button.tscn" id="2_lup7o"]
-[ext_resource type="Script" path="res://src/widgets/BackToMainMenuButton.cs" id="3_wm3s2"]
+[ext_resource type="Script" uid="uid://bdotm5i12xbl3" path="res://src/widgets/BackToMainMenuButton.cs" id="3_wm3s2"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -45,4 +45,8 @@ vertical_alignment = 1
 
 [node name="BackToMainMenuButton" parent="." instance=ExtResource("2_lup7o")]
 layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 158.0
+offset_bottom = 31.0
 script = ExtResource("3_wm3s2")

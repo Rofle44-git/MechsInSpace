@@ -7,6 +7,9 @@
 radius = 22.0907
 
 [node name="RudeDude" instance=ExtResource("1_2osw1")]
+MaxHP = 100.0
+HP = 100.0
+Speed = 350.0
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_44o03")

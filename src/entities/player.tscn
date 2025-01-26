@@ -1,15 +1,15 @@
 [gd_scene load_steps=18 format=3 uid="uid://cxcvambxx70kw"]
 
-[ext_resource type="Script" path="res://src/entities/Player.cs" id="1_uq16e"]
+[ext_resource type="Script" uid="uid://c8p05wbg61xt3" path="res://src/entities/Player.cs" id="1_uq16e"]
 [ext_resource type="PackedScene" uid="uid://b0khe5h4yviw" path="res://content/bullets/base.pea.tscn" id="2_hdhtq"]
 [ext_resource type="Texture2D" uid="uid://dp8p4xuvhgftq" path="res://assets-raw/sprites/player.svg" id="3_7eqfp"]
 [ext_resource type="AudioStream" uid="uid://nxu6bko8dp63" path="res://assets-raw/sounds/player_hit0.ogg" id="3_aavmw"]
 [ext_resource type="AudioStream" uid="uid://bh38m3p1jxyr1" path="res://assets-raw/sounds/player-death.ogg" id="3_g518b"]
 [ext_resource type="PackedScene" uid="uid://dhkv8fg0evthd" path="res://content/effects/base.player_death_effect.tscn" id="3_ma5cx"]
-[ext_resource type="Script" path="res://src/nodes/FloatingHUD.cs" id="4_ellcy"]
+[ext_resource type="Script" uid="uid://csssk3dvlxk3m" path="res://src/nodes/FloatingHUD.cs" id="4_ellcy"]
 [ext_resource type="PackedScene" uid="uid://cu0o7hem11aqe" path="res://src/nodes/shaker.tscn" id="4_imic2"]
 [ext_resource type="PackedScene" uid="uid://bfqmra3rfw32" path="res://src/nodes/shakeable_camera_2d.tscn" id="8_dt6eg"]
-[ext_resource type="Script" path="res://src/nodes/ShakeableCamera2D.cs" id="9_2c7x7"]
+[ext_resource type="Script" uid="uid://phmif7pofn3b" path="res://src/nodes/ShakeableCamera2D.cs" id="9_2c7x7"]
 
 [sub_resource type="Curve" id="Curve_ppqs3"]
 bake_resolution = 96
@@ -55,7 +55,7 @@ platform_on_leave = 2
 safe_margin = 8.0
 script = ExtResource("1_uq16e")
 Camera = NodePath("ShakeableCamera2D")
-StarterBullet = ExtResource("2_hdhtq")
+CurrentBullet = ExtResource("2_hdhtq")
 DeathEffect = ExtResource("3_ma5cx")
 FramesPerHealthRegeneration = 60
 ShotSFX = NodePath("ShotSFX")
@@ -66,9 +66,6 @@ Health2 = NodePath("FloatingHUD/ShakeContainer/Bottom")
 HealthShaker = NodePath("FloatingHUD/ShakeContainer/Shaker")
 SpriteShaker = NodePath("Sprite2D/Shaker")
 BulletSpawn = NodePath("BulletSpawn")
-MaxHP = 100
-HP = 100
-Speed = 350
 
 [node name="DeathSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_g518b")
